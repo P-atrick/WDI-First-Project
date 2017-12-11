@@ -1,0 +1,141 @@
+/*DEFAULT*/
+a {
+  text-decoration: none;
+}
+
+body {
+  background-color: #CFCFCF  ;
+  font-family: 'Raleway', sans-serif;
+}
+
+/*HEADER*/
+header {
+  align-items: center;
+  display: flex;
+  margin-bottom: 30px;
+}
+.header-wrapper {
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+
+/*MAIN*/
+
+main {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  width: 495px;
+}
+
+.tiles-wrapper {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.tile1, .tile2, .tile3, .tile4, .tile5, .tile6, .tile7, .tile8, .tile9 {
+  background-color: #696969;
+  border: 3px solid #000000;
+  border-radius: 10px;
+  height: 150px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 150px;
+}
+
+/*TILE TOGGLES*/
+.tile1-lit {
+  background-color: #00FFFF;
+  border: 3px solid rgba(182,182,182,0.9);
+}
+.tile2-lit {
+  background-color: #FF00C3;
+  border: 3px solid rgba(182,182,182,0.9);
+}
+.tile3-lit {
+  background-color: #FFFB00;
+  border: 3px solid rgba(182,182,182,0.9);
+}
+.tile4-lit {
+  background-color: #84FF00;
+  border: 3px solid rgba(182,182,182,0.9);
+}
+.tile5-lit {
+  background-color: #FF0000;
+  border: 3px solid rgba(182,182,182,0.9);
+}
+.tile6-lit {
+  background-color: #AF00E7;
+  border: 3px solid rgba(182,182,182,0.9);
+}
+.tile7-lit {
+  background-color: #FFB000;
+  border: 3px solid rgba(182,182,182,0.9);
+}
+.tile8-lit {
+  background-color: #0004FF;
+  border: 3px solid rgba(182,182,182,0.9);
+}
+.tile9-lit {
+  background-color: #E9FF0A;
+  border: 3px solid rgba(182,182,182,0.9);
+}
+
+
+
+/*FOOTER*/
+footer {
+}
+
+/*STATS*/
+.stats-wrapper {
+  display: flex;
+  font-weight: bolder;
+  font-size: 30px;
+  justify-content: space-around;
+}
+
+.restart-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.restart-button {
+  border-radius: 30px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  padding: 3px 15px;
+}
+
+.level {
+  border: 1px solid purple;
+  padding-right: 40px;
+  width: 150px;
+}
+
+.score {
+  border: 1px solid purple;
+  padding-right: 40px;
+  width: 150px;
+}
+
+.lives {
+  border: 1px solid purple;
+  padding-right: 40px;
+  width: 150px;
+}
+
+
+/**/
