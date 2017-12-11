@@ -39,40 +39,37 @@
 //End game
 console.log('JS loaded');
 
+const sequenceNumber = 5;
+const score = 0;
+const tilesArray = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9'];
+const generatedSequence = [];
+const userSequence = [];
+const displayTime = 1000;
+const chosen = Math.floor(Math.random() * 9);
+
 $(() => {
-  // const game = {
-  //   sequenceNumber: 3,
-  //   score: 0,
-  //   tilesArray: ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9'],
-  //   generatedSequence: [],
-  //   userSequence: [],
-  //   displayTime: 1000
-  // };
-
   //Variables
-  const sequenceNumber = 2;
-  const score = 0;
-  const tilesArray = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9'];
-  const generatedSequence = [];
-  const userSequence = [];
-  const displayTime = 1000;
-
+  const $h1 = ('h1');
   const $body = $('body');
   const $main = $('main');
   const $level = $('.level');
   const $score = $('.score');
   const $lives = $('.lives');
   const $start = $('.start-button');
+  const $check = $('.check-button');
   const $restart = $('.restart-button');
-  const $tile1 = $('.tile1');
-  const $tile2 = $('.tile2');
-  const $tile3 = $('.tile3');
-  const $tile4 = $('.tile4');
-  const $tile5 = $('.tile5');
-  const $tile6 = $('.tile6');
-  const $tile7 = $('.tile7');
-  const $tile8 = $('.tile8');
-  const $tile9 = $('.tile9');
+  const $tiles = $('.tile');
+  const $tileId = $tiles.attr('id');
+  console.log($tiles);
+  const $tile1 = $('#tile1');
+  const $tile2 = $('#tile2');
+  const $tile3 = $('#tile3');
+  const $tile4 = $('#tile4');
+  const $tile5 = $('#tile5');
+  const $tile6 = $('#tile6');
+  const $tile7 = $('#tile7');
+  const $tile8 = $('#tile8');
+  const $tile9 = $('#tile9');
 
   //Display current level and score
   $level.html(`Level ${sequenceNumber - 1}`);
@@ -81,7 +78,7 @@ $(() => {
   //Generate a random sequence of length sequenceNumber and push it to the generatedSequence array
   const determineSequence = () => {
     for (let i = 0; i < sequenceNumber; i++) {
-      generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]);
+      generatedSequence.push(tilesArray[chosen]);
       //Remove duplicate indexes
       if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
         generatedSequence.splice(i, 1);
@@ -106,192 +103,133 @@ $(() => {
   //Display the generated sequence by lighting up the tiles
   const playSequence = () => {
     for (let i = 0; i < generatedSequence.length; i++) {
+      // if ($tileId === generatedSequence[i]) {
+      //   setTimeout(() => {
+      //     $tileId.addClass(`${generatedSequence[i]}-lit`);
+      //     setTimeout(() => {
+      //       $tileId.removeClass(`${generatedSequence[i]}-lit`);
+      //     }, displayTime);
+      //   }, displayTime * (i + 1));
+      // }
       if (generatedSequence[i] === 'tile1') {
         setTimeout(() => {
-          $tile1.addClass('tile1-lit');
+          $tile1.addClass(`${generatedSequence[i]}-lit`);
           setTimeout(() => {
-            $tile1.removeClass('tile1-lit');
+            $tile1.removeClass(`${generatedSequence[i]}-lit`);
           }, displayTime);
         }, displayTime * (i + 1));
       }
       if (generatedSequence[i] === 'tile2') {
         setTimeout(() => {
-          $tile2.addClass('tile2-lit');
+          $tile2.addClass(`${generatedSequence[i]}-lit`);
           setTimeout(() => {
-            $tile2.removeClass('tile2-lit');
+            $tile2.removeClass(`${generatedSequence[i]}-lit`);
           }, displayTime);
         }, displayTime * (i + 1));
       }
       if (generatedSequence[i] === 'tile3') {
         setTimeout(() => {
-          $tile3.addClass('tile3-lit');
+          $tile3.addClass(`${generatedSequence[i]}-lit`);
           setTimeout(() => {
-            $tile3.removeClass('tile3-lit');
+            $tile3.removeClass(`${generatedSequence[i]}-lit`);
           }, displayTime);
         }, displayTime * (i + 1));
       }
       if (generatedSequence[i] === 'tile4') {
         setTimeout(() => {
-          $tile4.addClass('tile4-lit');
+          $tile4.addClass(`${generatedSequence[i]}-lit`);
           setTimeout(() => {
-            $tile4.removeClass('tile4-lit');
+            $tile4.removeClass(`${generatedSequence[i]}-lit`);
           }, displayTime);
         }, displayTime * (i + 1));
       }
       if (generatedSequence[i] === 'tile5') {
         setTimeout(() => {
-          $tile5.addClass('tile5-lit');
+          $tile5.addClass(`${generatedSequence[i]}-lit`);
           setTimeout(() => {
-            $tile5.removeClass('tile5-lit');
+            $tile5.removeClass(`${generatedSequence[i]}-lit`);
           }, displayTime);
         }, displayTime * (i + 1));
       }
       if (generatedSequence[i] === 'tile6') {
         setTimeout(() => {
-          $tile6.addClass('tile6-lit');
+          $tile6.addClass(`${generatedSequence[i]}-lit`);
           setTimeout(() => {
-            $tile6.removeClass('tile6-lit');
+            $tile6.removeClass(`${generatedSequence[i]}-lit`);
           }, displayTime);
         }, displayTime * (i + 1));
       }
       if (generatedSequence[i] === 'tile7') {
         setTimeout(() => {
-          $tile7.addClass('tile7-lit');
+          $tile7.addClass(`${generatedSequence[i]}-lit`);
           setTimeout(() => {
-            $tile7.removeClass('tile7-lit');
+            $tile7.removeClass(`${generatedSequence[i]}-lit`);
           }, displayTime);
         }, displayTime * (i + 1));
       }
       if (generatedSequence[i] === 'tile8') {
         setTimeout(() => {
-          $tile8.addClass('tile8-lit');
+          $tile8.addClass(`${generatedSequence[i]}-lit`);
           setTimeout(() => {
-            $tile8.removeClass('tile8-lit');
+            $tile8.removeClass(`${generatedSequence[i]}-lit`);
           }, displayTime);
         }, displayTime * (i + 1));
       }
       if (generatedSequence[i] === 'tile9') {
         setTimeout(() => {
-          $tile9.addClass('tile9-lit');
+          $tile9.addClass(`${generatedSequence[i]}-lit`);
           setTimeout(() => {
-            $tile9.removeClass('tile9-lit');
+            $tile9.removeClass(`${generatedSequence[i]}-lit`);
           }, displayTime);
         }, displayTime * (i + 1));
       }
     }
   };
-  playSequence();
 
 
   //Log the user's sequence in userSequence
-  $tile1.on('click', () => {
+  $tiles.on('click', (e) => {
+    const id = $(e.target).attr('id');
     setTimeout(() => {
-      $tile1.addClass('tile1-lit');
+      $(e.target).addClass(`${id}-lit`);
       setTimeout(() => {
-        $tile1.removeClass('tile1-lit');
+        $(e.target).removeClass(`${id}-lit`);
       }, 600);
     }, 0);
-    userSequence.push('tile1');
-    console.log(userSequence);
-  });
-  $tile2.on('click', () => {
-    setTimeout(() => {
-      $tile2.addClass('tile2-lit');
-      setTimeout(() => {
-        $tile2.removeClass('tile2-lit');
-      }, 600);
-    }, 0);
-    userSequence.push('tile2');
-    console.log(userSequence);
-  });
-  $tile3.on('click', () => {
-    setTimeout(() => {
-      $tile3.addClass('tile3-lit');
-      setTimeout(() => {
-        $tile3.removeClass('tile3-lit');
-      }, 600);
-    }, 0);
-    userSequence.push('tile3');
-    console.log(userSequence);
-  });
-  $tile4.on('click', () => {
-    setTimeout(() => {
-      $tile4.addClass('tile4-lit');
-      setTimeout(() => {
-        $tile4.removeClass('tile4-lit');
-      }, 600);
-    }, 0);
-    userSequence.push('tile4');
-    console.log(userSequence);
-  });
-  $tile5.on('click', () => {
-    setTimeout(() => {
-      $tile5.addClass('tile5-lit');
-      setTimeout(() => {
-        $tile5.removeClass('tile5-lit');
-      }, 600);
-    }, 0);
-    userSequence.push('tile5');
-    console.log(userSequence);
-  });
-  $tile6.on('click', () => {
-    setTimeout(() => {
-      $tile6.addClass('tile6-lit');
-      setTimeout(() => {
-        $tile6.removeClass('tile6-lit');
-      }, 600);
-    }, 0);
-    userSequence.push('tile6');
-    console.log(userSequence);
-  });
-  $tile7.on('click', () => {
-    setTimeout(() => {
-      $tile7.addClass('tile7-lit');
-      setTimeout(() => {
-        $tile7.removeClass('tile7-lit');
-      }, 600);
-    }, 0);
-    userSequence.push('tile7');
-    console.log(userSequence);
-  });
-  $tile8.on('click', () => {
-    setTimeout(() => {
-      $tile8.addClass('tile8-lit');
-      setTimeout(() => {
-        $tile8.removeClass('tile8-lit');
-      }, 600);
-    }, 0);
-    userSequence.push('tile8');
-    console.log(userSequence);
-  });
-  $tile9.on('click', () => {
-    setTimeout(() => {
-      $tile9.addClass('tile9-lit');
-      setTimeout(() => {
-        $tile9.removeClass('tile9-lit');
-      }, 600);
-    }, 0);
-    userSequence.push('tile9');
+    userSequence.push(id);
     console.log(userSequence);
   });
 
-  //Compare user sequence to generated sequence
-  const compareSequences = () => {
-    if (userSequence.length === sequenceNumber) {
-      for (let i = 0; i < generatedSequence.length + 1; i++) {
-        if (generatedSequence[i] === userSequence[i]) {
-          console.log('correct');
-        }
-      }
+  //Compare user sequence to generated sequence - Length
+  const compareArrayLength = () => {
+    console.log(generatedSequence);
+    console.log(userSequence);
+    let lengthEqual = false;
+    if ((generatedSequence.length === userSequence.length) === true) {
+      console.log('User array correct length');
+      lengthEqual = true;
+      console.log(lengthEqual);
+    } else {
+      console.log('User array wrong length');
+      console.log(lengthEqual);
     }
   };
 
-
-
-
+  //Compare user sequence to generated sequence - Contents
+  const compareArrayContents = () => {
+    let contentsEqual = false;
+    for (let i = 0; i < generatedSequence.length; i++) {
+      if (!(generatedSequence[i] === userSequence[i])){
+        contentsEqual = false;
+      } else {
+        contentsEqual = true;
+      }
+      console.log(contentsEqual);
+    }
+  };
+  
   //Remove start button when clicked
-  $start.on('click',() => {
-    $start.toggleClass('hide');
-  });
+  $start.on('click', playSequence);
+  $check.on('click', compareArrayLength, compareArrayContents);
 
 });

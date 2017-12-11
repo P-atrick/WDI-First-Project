@@ -6,6 +6,7 @@
     <script type="text/javascript" src="js/script.js"></script>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <title>Game Says</title>
   </head>
@@ -13,21 +14,21 @@
   <body>
     <header>
       <div class="header-wrapper">
-        <h1 class="game-name">Game Says</h1>
+        <h1 class="game-name animated bounceIn">Game Says</h1>
       </div>
     </header>
 
     <main>
       <div class="tiles-wrapper">
-        <div class="tile1"></div>
-        <div class="tile2"></div>
-        <div class="tile3"></div>
-        <div class="tile4"></div>
-        <div class="tile5"></div>
-        <div class="tile6"></div>
-        <div class="tile7"></div>
-        <div class="tile8"></div>
-        <div class="tile9"></div>
+        <div class="tile" id='tile1'></div>
+        <div class="tile" id='tile2'></div>
+        <div class="tile" id='tile3'></div>
+        <div class="tile" id='tile4'></div>
+        <div class="tile" id='tile5'></div>
+        <div class="tile" id='tile6'></div>
+        <div class="tile" id='tile7'></div>
+        <div class="tile" id='tile8'></div>
+        <div class="tile" id='tile9'></div>
       </div>
     </main>
 
@@ -37,8 +38,13 @@
         <div class="score">Score</div>
         <div class="lives">Lives</div>
       </div>
-      <div class="start-button-wrapper">
-        <button type="button" class="start-button">Start</button>
+      <div>
+        <div class="start-button-wrapper">
+          <button type="button" class="start-button">Start</button>
+        </div>
+        <div class="start-button-wrapper">
+          <button type="button" class="check-button">Check</button>
+        </div>
       </div>
       <div class="restart-button-wrapper">
         <button type="button" class="restart-button">Restart</button>

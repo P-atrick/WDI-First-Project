@@ -6,16 +6,10 @@ a {
 body {
   background-color: #5CA4A9;
   font-family: 'Raleway', sans-serif;
-  justify-content: center;
-  /*width: 900px;*/
 }
 
 .hide {
   display: none;
-}
-
-.no-click {
-  pointer-events: none;
 }
 
 /*HEADER*/
@@ -35,7 +29,6 @@ h1 {
   font-size: 55px;
 }
 
-
 /*MAIN*/
 
 main {
@@ -53,7 +46,7 @@ main {
   justify-content: space-around;
 }
 
-.tile1, .tile2, .tile3, .tile4, .tile5, .tile6, .tile7, .tile8, .tile9 {
+.tile {
   background-color: #696969;
   border: 3px solid rgba(244,241,187,0.6);
   border-radius: 10px;
@@ -101,10 +94,9 @@ main {
   border: 3px solid rgba(182,182,182,0.9);
 }
 
-
-
 /*FOOTER*/
 footer {
+
 }
 
 /*STATS*/
@@ -132,6 +124,22 @@ footer {
   padding: 3px 40px;
 }
 
+.check-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.check-button {
+  background-color: #F4F1BB;
+  border-radius: 5px;
+  color: #5CA4A9;
+  font-family: 'Raleway', sans-serif;
+  font-size: 40px;
+  font-weight: bolder;
+  padding: 3px 40px;
+}
+
 .restart-button-wrapper {
   display: flex;
   justify-content: center;
@@ -149,9 +157,6 @@ footer {
 }
 
 .level, .score, .lives {
-  /*padding-right: 40px;*/
-  /*width: 150px;*/
 }
-
 
 /**/
