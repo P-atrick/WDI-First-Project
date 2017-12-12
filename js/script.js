@@ -1,3 +1,6 @@
+//Local Storage
+localStorage.setItem('score', 0);
+
 //Variables
 let contentsEqual = false;
 let displayTime = 700;
@@ -97,6 +100,8 @@ $(() => {
   const $tile7 = $('#tile7');
   const $tile8 = $('#tile8');
   const $tile9 = $('#tile9');
+  const $storedScore = localStorage.getItem('score');
+
 
   const restart = () => {
     sequenceNumber = 2; //Set sequence number to 2 / Level to 1
