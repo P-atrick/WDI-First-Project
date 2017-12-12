@@ -39,13 +39,17 @@
 //End game
 console.log('JS loaded');
 
-const sequenceNumber = 5;
+let sequenceNumber = 2;
 const score = 0;
 const tilesArray = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9'];
 const generatedSequence = [];
 const userSequence = [];
 const displayTime = 1000;
 const chosen = Math.floor(Math.random() * 9);
+let contentsEqual = false;
+let lengthEqual = false;
+let userCorrect = null;
+
 
 $(() => {
   //Variables
@@ -60,7 +64,6 @@ $(() => {
   const $restart = $('.restart-button');
   const $tiles = $('.tile');
   const $tileId = $tiles.attr('id');
-  console.log($tiles);
   const $tile1 = $('#tile1');
   const $tile2 = $('#tile2');
   const $tile3 = $('#tile3');
@@ -70,10 +73,6 @@ $(() => {
   const $tile7 = $('#tile7');
   const $tile8 = $('#tile8');
   const $tile9 = $('#tile9');
-
-  //Display current level and score
-  $level.html(`Level ${sequenceNumber - 1}`);
-  $score.html(`Score ${score}`);
 
   //Generate a random sequence of length sequenceNumber and push it to the generatedSequence array
   const determineSequence = () => {
@@ -97,7 +96,6 @@ $(() => {
       console.log(generatedSequence);
     }
   };
-  determineSequence();
 
 
   //Display the generated sequence by lighting up the tiles
@@ -202,34 +200,57 @@ $(() => {
 
   //Compare user sequence to generated sequence - Length
   const compareArrayLength = () => {
-    console.log(generatedSequence);
-    console.log(userSequence);
-    let lengthEqual = false;
     if ((generatedSequence.length === userSequence.length) === true) {
-      console.log('User array correct length');
+      console.log('User length correct');
       lengthEqual = true;
-      console.log(lengthEqual);
     } else {
-      console.log('User array wrong length');
-      console.log(lengthEqual);
+      console.log('User length wrong');
     }
   };
 
   //Compare user sequence to generated sequence - Contents
   const compareArrayContents = () => {
-    let contentsEqual = false;
     for (let i = 0; i < generatedSequence.length; i++) {
       if (!(generatedSequence[i] === userSequence[i])){
         contentsEqual = false;
+        console.log('User index wrong');
       } else {
         contentsEqual = true;
+        console.log('User index correct');
       }
-      console.log(contentsEqual);
     }
   };
-  
+
+  const checkUserSequence = () => {
+    if (lengthEqual && contentsEqual === true) {
+      console.log('User sequence is correct');
+      userCorrect = true;
+      console.log(userCorrect);
+      sequenceNumber++;
+      $level.html(`Level ${sequenceNumber - 1}`);
+    } else {
+      console.log('User sequence is wrong');
+      userCorrect = false;
+      console.log(userCorrect);
+    }
+  };
+
   //Remove start button when clicked
-  $start.on('click', playSequence);
-  $check.on('click', compareArrayLength, compareArrayContents);
+  $start.on('click', () => {
+    determineSequence();
+    playSequence();
+  });
+
+  $check.on('click', () => {
+    console.log(`Generated: ${generatedSequence}`);
+    console.log(`Generated: ${userSequence}`);
+    compareArrayLength();
+    compareArrayContents();
+    checkUserSequence();
+  });
+
+  //Display current level and score
+  $level.html(`Level ${sequenceNumber - 1}`);
+  $score.html(`Score ${score}`);
 
 });
