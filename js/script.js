@@ -40,11 +40,11 @@
 console.log('JS loaded');
 
 let sequenceNumber = 2;
-const score = 0;
+let score = 0;
 const tilesArray = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9'];
 const generatedSequence = [];
-const userSequence = [];
-const displayTime = 1000;
+let userSequence = [];
+let displayTime = 1000;
 const chosen = Math.floor(Math.random() * 9);
 let contentsEqual = false;
 let lengthEqual = false;
@@ -82,7 +82,7 @@ $(() => {
       if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
         generatedSequence.splice(i, 1);
         generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
-        //If the above if statement added another dupliacate replace the duplicate index
+        // If the above if statement added another dupliacate replace the duplicate index
         if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
           generatedSequence.splice(i, 1);
           generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
@@ -94,6 +94,15 @@ $(() => {
         }
       }
       console.log(generatedSequence);
+    }
+  };
+  determineSequence();
+
+  const nextLevelSequence = () => {
+    for (let i = 0; i < 1; i++) {
+      generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]);
+      console.log(generatedSequence);
+      userSequence = [];
     }
   };
 
@@ -221,13 +230,20 @@ $(() => {
     }
   };
 
+  //Check if both the contents and length are equal
   const checkUserSequence = () => {
+    //If equal
     if (lengthEqual && contentsEqual === true) {
       console.log('User sequence is correct');
       userCorrect = true;
       console.log(userCorrect);
-      sequenceNumber++;
-      $level.html(`Level ${sequenceNumber - 1}`);
+      sequenceNumber++; //Add one to the sequence length and to the level
+      $level.html(`Level ${sequenceNumber - 1}`); //Display the new level
+      nextLevelSequence(); //Add a random tile to the sequence
+      score = score + (100 * `1.${sequenceNumber}`); //Increase score by 130, increasing by 10 every level
+      $score.html(`Score ${score}`); //Display the new score
+      displayTime = displayTime - 100;
+    //If not equal
     } else {
       console.log('User sequence is wrong');
       userCorrect = false;
@@ -235,12 +251,12 @@ $(() => {
     }
   };
 
-  //Remove start button when clicked
+  //When start button is clicked display the generated sequence
   $start.on('click', () => {
-    determineSequence();
     playSequence();
   });
 
+  //When check button is clicked check both the array contents and length are equal
   $check.on('click', () => {
     console.log(`Generated: ${generatedSequence}`);
     console.log(`Generated: ${userSequence}`);
