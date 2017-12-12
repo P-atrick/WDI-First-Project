@@ -42,8 +42,9 @@ console.log('JS loaded');
 let sequenceNumber = 2;
 let score = 0;
 const tilesArray = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9'];
-const generatedSequence = [];
+let generatedSequence = [];
 let userSequence = [];
+let lives = 3;
 let displayTime = 900;
 const chosen = Math.floor(Math.random() * 9);
 let contentsEqual = false;
@@ -73,6 +74,7 @@ $(() => {
   const $tile7 = $('#tile7');
   const $tile8 = $('#tile8');
   const $tile9 = $('#tile9');
+  const $startCheck = $('.start-check-button-wrapper');
 
   //Generate a random sequence of length sequenceNumber and push it to the generatedSequence array
   const determineSequence = () => {
@@ -106,6 +108,19 @@ $(() => {
     }
   };
 
+  const restart = () => {
+    sequenceNumber = 2; //Set sequence number to 2 / Level to 1
+    $level.html(`Level ${sequenceNumber - 1}`); //Display the new level
+    score = 0; //Set score to 0
+    $score.html(`Score ${score}`); //Display the new score
+    lives = 3; //Set lives to 3
+    $lives.html(`Lives ${lives}`); //Display the new lives
+    generatedSequence = []; //Clear the generated sequence
+    userSequence = []; //Clear the user sequence
+    console.log(generatedSequence);
+    console.log(userSequence);
+    determineSequence();
+  };
 
   //Display the generated sequence by lighting up the tiles
   const playSequence = () => {
@@ -230,7 +245,7 @@ $(() => {
     }
   };
 
-  //Check if both the contents and length are equal
+  //Check if both the contents and length are equal and adjust variables as required
   const checkUserSequence = () => {
     //If equal
     if (lengthEqual && contentsEqual === true) {
@@ -252,6 +267,12 @@ $(() => {
       console.log('User sequence is wrong');
       userCorrect = false;
       console.log(userCorrect);
+      userSequence = [];
+      lives = lives - 1;
+      if (lives === 0) {
+        $startCheck.css('display', 'none');
+      }
+      $lives.html(`Lives ${lives}`);
     }
   };
 
@@ -269,8 +290,14 @@ $(() => {
     checkUserSequence();
   });
 
+  $restart.on('click', () => {
+    restart();
+    $startCheck.css('display', 'flex');
+  });
+
   //Display current level and score
   $level.html(`Level ${sequenceNumber - 1}`);
   $score.html(`Score ${score}`);
+  $lives.html(`Lives ${lives}`);
 
 });
