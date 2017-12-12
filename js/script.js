@@ -1,6 +1,6 @@
 //Variables
 let contentsEqual = false;
-let displayTime = 900;
+let displayTime = 700;
 let generatedSequence = [];
 let lengthEqual = false;
 let lives = 3;
@@ -81,7 +81,7 @@ $(() => {
   const $play = $('.play-button');
   const $playCheck = $('.play-check-button-wrapper');
   const $tiles = $('.tile');
-  const $tileId = $tiles.attr('id');
+  const $tileId = $('.tile').attr('id');
   const $tile1 = $('#tile1');
   const $tile2 = $('#tile2');
   const $tile3 = $('#tile3');
@@ -109,13 +109,18 @@ $(() => {
   //Display the generated sequence by lighting up the tiles
   const playSequence = () => {
     for (let i = 0; i < generatedSequence.length; i++) {
-      // if ($tileId === generatedSequence[i]) {
-      //   setTimeout(() => {
-      //     $tileId.addClass(`${generatedSequence[i]}-lit`);
+      // for (let j = 0; j < tilesArray.length; j++) {
+      //   console.log(tilesArray[j]);
+      //   if (generatedSequence[i] === tilesArray[j]) {
+      //     const $chosen = $(generatedSequence[i]);
+      //     console.log($chosen.get());
       //     setTimeout(() => {
-      //       $tileId.removeClass(`${generatedSequence[i]}-lit`);
-      //     }, displayTime);
-      //   }, displayTime * (i + 1));
+      //       $(generatedSequence[i]).addClass(`${generatedSequence[i]}-lit`);
+      //       setTimeout(() => {
+      //         $(generatedSequence[i]).removeClass(`${generatedSequence[i]}-lit`);
+      //       }, displayTime);
+      //     }, displayTime * (i + 1));
+      //   }
       // }
       if (generatedSequence[i] === 'tile1') {
         setTimeout(() => {
@@ -224,11 +229,13 @@ $(() => {
   };
 
   const reduceTime = () => {
-    if (displayTime <=300) {
-      displayTime = displayTime - 25;
+    if (displayTime <=200) {
+      displayTime = displayTime - 20;
+    } else if (displayTime <=300) {
+      displayTime = displayTime - 40;
     } else if (displayTime <= 500){
-      displayTime = displayTime - 50;
-    } else if (displayTime <= 900) {
+      displayTime = displayTime - 80;
+    } else if (displayTime <= 1000) {
       displayTime = displayTime - 100;
     }
   };
@@ -272,11 +279,21 @@ $(() => {
     }
   };
 
+  const preventClick = () => {
+    setTimeout(() => {
+      $main.addClass('overlay');
+      setTimeout(() => {
+        $main.removeClass('overlay');
+      }, displayTime * (sequenceNumber + 1));
+    }, 0);
+  };
+
   //BUTTON CLICKS
   //When play button is clicked display the generated sequence
   //Disable the play button
   //Enable the check button
   $play.on('click', () => {
+    preventClick();
     playSequence();
     $play.attr('disabled','disabled');
     $check.removeAttr('disabled');
