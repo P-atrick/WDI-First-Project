@@ -11,6 +11,35 @@ const tilesArray = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7
 let userCorrect = null;
 let userSequence = [];
 
+//Generate a random sequence of length sequenceNumber and push it to the generatedSequence array
+const determineSequence = () => {
+  for (let i = 0; i < sequenceNumber; i++) {
+    generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]);
+    //If the chosen tile is equal to the tile either side choose a new tile / Remove duplicate indexes
+    if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+      generatedSequence.splice(i, 1);
+      generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+      // If the above if statement chose a duplicate again replace the duplicate tile
+      if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+        generatedSequence.splice(i, 1);
+        generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+        //Triple check for duplicates
+        if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+          generatedSequence.splice(i, 1);
+          generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+          //Quadruple check
+          if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+            generatedSequence.splice(i, 1);
+            generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+          }
+        }
+      }
+    }
+    console.log(generatedSequence);
+  }
+};
+determineSequence();
+
 const nextLevelSequence = () => {
   for (let i = 0; i < 1; i++) {
     generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]); //Push a new tile to the generated sequence
@@ -62,35 +91,6 @@ $(() => {
   const $tile7 = $('#tile7');
   const $tile8 = $('#tile8');
   const $tile9 = $('#tile9');
-
-  //Generate a random sequence of length sequenceNumber and push it to the generatedSequence array
-  const determineSequence = () => {
-    for (let i = 0; i < sequenceNumber; i++) {
-      generatedSequence.push(tilesArray[chosen]);
-      //If the chosen tile is equal to the tile either side choose a new tile / Remove duplicate indexes
-      if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-        generatedSequence.splice(i, 1);
-        generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
-        // If the above if statement chose a duplicate again replace the duplicate tile
-        if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-          generatedSequence.splice(i, 1);
-          generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
-          //Triple check for duplicates
-          if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-            generatedSequence.splice(i, 1);
-            generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
-            //Quadruple check
-            if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-              generatedSequence.splice(i, 1);
-              generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
-            }
-          }
-        }
-      }
-      console.log(generatedSequence);
-    }
-  };
-  determineSequence();
 
   const restart = () => {
     sequenceNumber = 2; //Set sequence number to 2 / Level to 1
@@ -208,10 +208,7 @@ $(() => {
   //Compare user sequence to generated sequence - Length
   const compareArrayLength = () => {
     if ((generatedSequence.length === userSequence.length) === true) {
-      console.log('User length correct');
       lengthEqual = true;
-    } else {
-      console.log('User length wrong');
     }
   };
 
@@ -220,50 +217,58 @@ $(() => {
     for (let i = 0; i < generatedSequence.length; i++) {
       if (!(generatedSequence[i] === userSequence[i])){
         contentsEqual = false;
-        console.log('User index wrong');
       } else {
         contentsEqual = true;
-        console.log('User index correct');
       }
     }
   };
 
   const reduceTime = () => {
-    if (displayTime <= 500) {
+    if (displayTime <=300) {
+      displayTime = displayTime - 25;
+    } else if (displayTime <= 500){
       displayTime = displayTime - 50;
-    } else {
+    } else if (displayTime <= 900) {
       displayTime = displayTime - 100;
     }
   };
 
-  //Check if both the contents and length are equal and adjust variables as required
+  const newLevel = () => {
+    sequenceNumber++; //Add one to the sequence length and to the level
+    $level.html(`Level ${sequenceNumber - 1}`); //Display the new level
+  };
+
+  const newScore = () => {
+    score = score + (100 * `1.${sequenceNumber}`); //Increase score by 130, increasing by 10 every level
+    $score.html(`Score ${score}`); //Display the new score
+  };
+
+  const removeLives = () => {
+    lives = lives - 1; //Remove 1 life
+    //When the user has no lives left
+    //Remove the start and check buttons
+    //Show the restart button
+    if (lives === 0) {
+      $startCheck.css('display', 'none');
+      $restart.css('display', 'block');
+    }
+    $lives.html(`Lives ${lives}`); //Display the number of lives left
+  };
+
+  //Check if both the contents and length are equal and run functions to adjust variables as required
   const checkUserSequence = () => {
-    //If equal
-    if (lengthEqual && contentsEqual === true) {
+    if (lengthEqual && contentsEqual === true) { //If equal
       console.log('User sequence is correct');
       userCorrect = true;
-      console.log(userCorrect);
-      sequenceNumber++; //Add one to the sequence length and to the level
-      $level.html(`Level ${sequenceNumber - 1}`); //Display the new level
+      newLevel(); //Increase sequence number and level by 1. Display new level
       nextLevelSequence(); //Add a random tile to the sequence
-      score = score + (100 * `1.${sequenceNumber}`); //Increase score by 130, increasing by 10 every level
-      $score.html(`Score ${score}`); //Display the new score
-      reduceTime();
-    //If not equal
-    } else {
+      newScore(); //Increase score. Display new score
+      reduceTime(); //Increase speed at which sequence is displayed
+    } else { //If not equal
       console.log('User sequence is wrong');
       userCorrect = false;
-      console.log(userCorrect);
       userSequence = []; //Clear the user sequence so they can try again
-      lives = lives - 1; //Remove 1 life
-      //When the user has no lives left
-      //Remove the start and check buttons
-      //Show the restart button
-      if (lives === 0) {
-        $startCheck.css('display', 'none');
-        $restart.css('display', 'block');
-      }
-      $lives.html(`Lives ${lives}`); //Display the number of lives left
+      removeLives(); //Remove 1 life, if 0 allow user to restart
     }
   };
 
@@ -300,6 +305,8 @@ $(() => {
     restart();
     $startCheck.css('display', 'flex');
     $restart.css('display', 'none');
+    $start.removeAttr('disabled');
+    $check.attr('disabled','disabled');
   });
 
   //Display current level, score and lives
