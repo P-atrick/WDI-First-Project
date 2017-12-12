@@ -108,13 +108,13 @@ footer {
   justify-content: space-around;
 }
 
-.start-check-button-wrapper {
+.play-check-button-wrapper {
   display: flex;
   justify-content: center;
   margin-top: 30px;
 }
 
-.start-button {
+.play-button {
   background-color: #F4F1BB;
   border-radius: 5px;
   color: #5CA4A9;
@@ -168,7 +168,7 @@ footer {
   width: 100px;
   }
 
-  .start-button {
+  .play-button {
     font-size: 25px;
     width: 120px;
   }
@@ -203,7 +203,7 @@ footer {
   width: 60px;
   }
 
-  .start-button {
+  .play-button {
     font-size: 16px;
     width: 72px;
   }

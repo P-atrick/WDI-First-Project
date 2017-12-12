@@ -6,7 +6,7 @@ let generatedSequence = [];
 let lengthEqual = false;
 let lives = 3;
 let score = 0;
-let sequenceNumber = 2;
+let sequenceNumber = 10;
 const tilesArray = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9'];
 let userCorrect = null;
 let userSequence = [];
@@ -14,23 +14,28 @@ let userSequence = [];
 //Generate a random sequence of length sequenceNumber and push it to the generatedSequence array
 const determineSequence = () => {
   for (let i = 0; i < sequenceNumber; i++) {
+    const spliceDuplicates = () => {
+      generatedSequence.splice(i, 1);
+      generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+    };
+    // const equal = generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1];
     generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]);
     //If the chosen tile is equal to the tile either side choose a new tile / Remove duplicate indexes
     if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-      generatedSequence.splice(i, 1);
-      generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+      spliceDuplicates();
       // If the above if statement chose a duplicate again replace the duplicate tile
       if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-        generatedSequence.splice(i, 1);
-        generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+        spliceDuplicates();
         //Triple check for duplicates
         if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-          generatedSequence.splice(i, 1);
-          generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+          spliceDuplicates();
           //Quadruple check
           if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-            generatedSequence.splice(i, 1);
-            generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+            spliceDuplicates();
+            //Quintuple
+            if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+              spliceDuplicates();
+            }
           }
         }
       }
@@ -40,25 +45,30 @@ const determineSequence = () => {
 };
 determineSequence();
 
+//Push a new tile to the generated sequence
 const nextLevelSequence = () => {
   for (let i = 0; i < 1; i++) {
-    generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]); //Push a new tile to the generated sequence
-    //If the chosen tile is equal to the tile either side choose a new tile / Remove duplicate indexes
-    if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+    const spliceDuplicates = () => {
       generatedSequence.splice(i, 1);
       generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+    };
+    generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]);
+    //If the chosen tile is equal to the tile either side choose a new tile / Remove duplicate indexes
+    if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+      spliceDuplicates();
       // If the above if statement chose a duplicate again replace the duplicate tile
       if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-        generatedSequence.splice(i, 1);
-        generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+        spliceDuplicates();
         //Triple check for duplicates
         if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-          generatedSequence.splice(i, 1);
-          generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+          spliceDuplicates();
           //Quadruple check
           if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-            generatedSequence.splice(i, 1);
-            generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+            spliceDuplicates();
+            //Quintuple
+            if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+              spliceDuplicates();
+            }
           }
         }
       }
@@ -78,8 +88,8 @@ $(() => {
   const $main = $('main');
   const $restart = $('.restart-button');
   const $score = $('.score');
-  const $start = $('.start-button');
-  const $startCheck = $('.start-check-button-wrapper');
+  const $play = $('.play-button');
+  const $playCheck = $('.play-check-button-wrapper');
   const $tiles = $('.tile');
   const $tileId = $tiles.attr('id');
   const $tile1 = $('#tile1');
@@ -246,10 +256,10 @@ $(() => {
   const removeLives = () => {
     lives = lives - 1; //Remove 1 life
     //When the user has no lives left
-    //Remove the start and check buttons
+    //Remove the play and check buttons
     //Show the restart button
     if (lives === 0) {
-      $startCheck.css('display', 'none');
+      $playCheck.css('display', 'none');
       $restart.css('display', 'block');
     }
     $lives.html(`Lives ${lives}`); //Display the number of lives left
@@ -273,18 +283,19 @@ $(() => {
   };
 
   //BUTTON CLICKS
-  //When start button is clicked display the generated sequence
-  //Disable the start button
+  //When play button is clicked display the generated sequence
+  //Disable the play button
   //Enable the check button
-  $start.on('click', () => {
+  $play.on('click', () => {
     playSequence();
+    $play.attr('disabled','disabled');
     $check.removeAttr('disabled');
   });
 
   //When check button is clicked check both the array contents and length are equal
   //Disable the check button
-  //Enable the start button
-  //If user was wrong re-enable the check button and diable the start button
+  //Enable the play button
+  //If user was wrong re-enable the check button and diable the play button
   $check.on('click', () => {
     console.log(`Generated: ${generatedSequence}`);
     console.log(`User: ${userSequence}`);
@@ -292,20 +303,20 @@ $(() => {
     compareArrayContents();
     checkUserSequence();
     $check.attr('disabled','disabled');
-    $start.removeAttr('disabled');
+    $play.removeAttr('disabled');
     if (userCorrect === false) {
       $check.removeAttr('disabled');
-      $start.attr('disabled','disabled');
+      $play.attr('disabled','disabled');
     }
   });
 
   //When restart button is clicked trigger restart function
-  //Display start and check buttons, remove restart button
+  //Display play and check buttons, remove restart button
   $restart.on('click', () => {
     restart();
-    $startCheck.css('display', 'flex');
+    $playCheck.css('display', 'flex');
     $restart.css('display', 'none');
-    $start.removeAttr('disabled');
+    $play.removeAttr('disabled');
     $check.attr('disabled','disabled');
   });
 
