@@ -88,7 +88,7 @@
   animation-name: pulse;
 }
 
-@keyframes rubberBand {
+@keyframes rubberBand-green {
   from {
     transform: scale3d(1, 1, 1);
   }
@@ -118,8 +118,9 @@
   }
 }
 
-.rubberBand {
-  animation-name: rubberBand;
+.rubberBand-green {
+  animation-name: rubberBand-green;
+  color: #42ff2f;
 }
 
 @keyframes shake {
@@ -198,7 +199,7 @@
   animation-name: swing;
 }
 
-@keyframes tada {
+@keyframes tada-red {
   from {
     transform: scale3d(1, 1, 1);
   }
@@ -220,8 +221,9 @@
   }
 }
 
-.tada {
-  animation-name: tada;
+.tada-red {
+  animation-name: tada-red;
+  color: #ED6A5A;
 }
 
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */

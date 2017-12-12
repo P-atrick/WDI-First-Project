@@ -29,6 +29,9 @@ const determineSequence = () => {
             spliceDuplicates();
             if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
               spliceDuplicates();
+              if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+                spliceDuplicates();
+              }
             }
           }
         }
@@ -58,6 +61,9 @@ const nextLevelSequence = () => {
             spliceDuplicates();
             if (generatedSequence[i] === generatedSequence[i - 1]) {
               spliceDuplicates();
+              if (generatedSequence[i] === generatedSequence[i - 1]) {
+                spliceDuplicates();
+              }
             }
           }
         }
@@ -262,6 +268,24 @@ $(() => {
     $lives.html(`Lives ${lives}`); //Display the number of lives left
   };
 
+  const scoreAnimate = () => {
+    setTimeout(() => {
+      $score.addClass('animated rubberBand-green');
+      setTimeout(() => {
+        $score.removeClass('animated rubberBand-green');
+      }, 1200);
+    }, 0);
+  };
+
+  const livesAnimate = () => {
+    setTimeout(() => {
+      $lives.addClass('animated tada-red');
+      setTimeout(() => {
+        $lives.removeClass('animated tada-red');
+      }, 2000);
+    }, 0);
+  };
+
   //Check if both the contents and length are equal and run functions to adjust variables as required
   const checkUserSequence = () => {
     if (lengthEqual && contentsEqual === true) { //If equal
@@ -271,11 +295,13 @@ $(() => {
       nextLevelSequence(); //Add a random tile to the sequence
       newScore(); //Increase score. Display new score
       reduceTime(); //Increase speed at which sequence is displayed
+      scoreAnimate();
     } else { //If not equal
       console.log('User sequence is wrong');
       userCorrect = false;
       userSequence = []; //Clear the user sequence so they can try again
       removeLives(); //Remove 1 life, if 0 allow user to restart
+      livesAnimate();
     }
   };
 
