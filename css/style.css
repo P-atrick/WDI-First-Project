@@ -21,6 +21,10 @@ body {
     pointer-events: none;
 }
 
+@-ms-viewport {
+  width: device-width;
+}
+
 /*HEADER*/
 header {
   align-items: center;
