@@ -108,7 +108,7 @@ footer {
   justify-content: space-around;
 }
 
-.start-button-wrapper {
+.start-check-button-wrapper {
   display: flex;
   justify-content: center;
   margin-top: 30px;
@@ -121,13 +121,8 @@ footer {
   font-family: 'Raleway', sans-serif;
   font-size: 40px;
   font-weight: bolder;
-  padding: 3px 40px;
-}
-
-.check-button-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
+  margin-right: 10px;
+  width: 180px;
 }
 
 .check-button {
@@ -137,7 +132,8 @@ footer {
   font-family: 'Raleway', sans-serif;
   font-size: 40px;
   font-weight: bolder;
-  padding: 3px 40px;
+  margin-left: 10px;
+  width: 180px;
 }
 
 .restart-button-wrapper {

@@ -44,7 +44,7 @@ let score = 0;
 const tilesArray = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9'];
 const generatedSequence = [];
 let userSequence = [];
-let displayTime = 1000;
+let displayTime = 900;
 const chosen = Math.floor(Math.random() * 9);
 let contentsEqual = false;
 let lengthEqual = false;
@@ -242,7 +242,11 @@ $(() => {
       nextLevelSequence(); //Add a random tile to the sequence
       score = score + (100 * `1.${sequenceNumber}`); //Increase score by 130, increasing by 10 every level
       $score.html(`Score ${score}`); //Display the new score
-      displayTime = displayTime - 100;
+      if (displayTime <= 500) {
+        displayTime = displayTime - 50;
+      } else {
+        displayTime = displayTime - 100;
+      }
     //If not equal
     } else {
       console.log('User sequence is wrong');
