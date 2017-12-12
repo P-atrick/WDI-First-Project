@@ -31,6 +31,9 @@ const determineSequence = () => {
               spliceDuplicates();
               if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
                 spliceDuplicates();
+                if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+                  spliceDuplicates();
+                }
               }
             }
           }
@@ -63,6 +66,9 @@ const nextLevelSequence = () => {
               spliceDuplicates();
               if (generatedSequence[i] === generatedSequence[i - 1]) {
                 spliceDuplicates();
+                if (generatedSequence[i] === generatedSequence[i - 1]) {
+                  spliceDuplicates();
+                }
               }
             }
           }
@@ -107,6 +113,7 @@ $(() => {
     $lives.html(`Lives ${lives}`); //Display the new lives
     generatedSequence = []; //Clear the generated sequence
     userSequence = []; //Clear the user sequence
+    displayTime = 700;
     console.log(generatedSequence);
     console.log(userSequence);
     determineSequence();
@@ -282,7 +289,7 @@ $(() => {
       $lives.addClass('animated tada-red');
       setTimeout(() => {
         $lives.removeClass('animated tada-red');
-      }, 2000);
+      }, 1300);
     }, 0);
   };
 
@@ -323,6 +330,7 @@ $(() => {
     playSequence();
     $play.attr('disabled','disabled');
     $check.removeAttr('disabled');
+    userSequence = [];
   });
 
   //When check button is clicked check both the array contents and length are equal
