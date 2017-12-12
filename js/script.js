@@ -1,5 +1,4 @@
 //Variables
-const chosen = Math.floor(Math.random() * 9);
 let contentsEqual = false;
 let displayTime = 900;
 let generatedSequence = [];
@@ -18,21 +17,16 @@ const determineSequence = () => {
       generatedSequence.splice(i, 1);
       generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
     };
-    // const equal = generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1];
     generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]);
-    //If the chosen tile is equal to the tile either side choose a new tile / Remove duplicate indexes
+    //Remove and replace duplicate tiles
     if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
       spliceDuplicates();
-      // If the above if statement chose a duplicate again replace the duplicate tile
       if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
         spliceDuplicates();
-        //Triple check for duplicates
         if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
           spliceDuplicates();
-          //Quadruple check
           if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
             spliceDuplicates();
-            //Quintuple
             if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
               spliceDuplicates();
             }
@@ -53,19 +47,15 @@ const nextLevelSequence = () => {
       generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
     };
     generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]);
-    //If the chosen tile is equal to the tile either side choose a new tile / Remove duplicate indexes
+    //Remove and replace duplicate tiles
     if (generatedSequence[i] === generatedSequence[i - 1]) {
       spliceDuplicates();
-      // If the above if statement chose a duplicate again replace the duplicate tile
       if (generatedSequence[i] === generatedSequence[i - 1]) {
         spliceDuplicates();
-        //Triple check for duplicates
         if (generatedSequence[i] === generatedSequence[i - 1]) {
           spliceDuplicates();
-          //Quadruple check
           if (generatedSequence[i] === generatedSequence[i - 1]) {
             spliceDuplicates();
-            //Quintuple
             if (generatedSequence[i] === generatedSequence[i - 1]) {
               spliceDuplicates();
             }
