@@ -6,7 +6,7 @@ let generatedSequence = [];
 let lengthEqual = false;
 let lives = 3;
 let score = 0;
-let sequenceNumber = 10;
+let sequenceNumber = 2;
 const tilesArray = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9'];
 let userCorrect = null;
 let userSequence = [];
@@ -54,19 +54,19 @@ const nextLevelSequence = () => {
     };
     generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]);
     //If the chosen tile is equal to the tile either side choose a new tile / Remove duplicate indexes
-    if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+    if (generatedSequence[i] === generatedSequence[i - 1]) {
       spliceDuplicates();
       // If the above if statement chose a duplicate again replace the duplicate tile
-      if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+      if (generatedSequence[i] === generatedSequence[i - 1]) {
         spliceDuplicates();
         //Triple check for duplicates
-        if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+        if (generatedSequence[i] === generatedSequence[i - 1]) {
           spliceDuplicates();
           //Quadruple check
-          if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+          if (generatedSequence[i] === generatedSequence[i - 1]) {
             spliceDuplicates();
             //Quintuple
-            if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+            if (generatedSequence[i] === generatedSequence[i - 1]) {
               spliceDuplicates();
             }
           }
