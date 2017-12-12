@@ -11,6 +11,34 @@ const tilesArray = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7
 let userCorrect = null;
 let userSequence = [];
 
+const nextLevelSequence = () => {
+  for (let i = 0; i < 1; i++) {
+    generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]); //Push a new tile to the generated sequence
+    //If the chosen tile is equal to the tile either side choose a new tile / Remove duplicate indexes
+    if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+      generatedSequence.splice(i, 1);
+      generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+      // If the above if statement chose a duplicate again replace the duplicate tile
+      if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+        generatedSequence.splice(i, 1);
+        generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+        //Triple check for duplicates
+        if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+          generatedSequence.splice(i, 1);
+          generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+          //Quadruple check
+          if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+            generatedSequence.splice(i, 1);
+            generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+          }
+        }
+      }
+    }
+    console.log(generatedSequence);
+    userSequence = []; //Clear the user sequence
+  }
+};
+
 $(() => {
   //$Variables
   const $body = $('body');
@@ -51,6 +79,11 @@ $(() => {
           if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
             generatedSequence.splice(i, 1);
             generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+            //Quadruple check
+            if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+              generatedSequence.splice(i, 1);
+              generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+            }
           }
         }
       }
@@ -58,14 +91,6 @@ $(() => {
     }
   };
   determineSequence();
-
-  const nextLevelSequence = () => {
-    for (let i = 0; i < 1; i++) {
-      generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]); //Push a new tile to the generated sequence
-      console.log(generatedSequence);
-      userSequence = []; //Clear the user sequence
-    }
-  };
 
   const restart = () => {
     sequenceNumber = 2; //Set sequence number to 2 / Level to 1
@@ -203,6 +228,14 @@ $(() => {
     }
   };
 
+  const reduceTime = () => {
+    if (displayTime <= 500) {
+      displayTime = displayTime - 50;
+    } else {
+      displayTime = displayTime - 100;
+    }
+  };
+
   //Check if both the contents and length are equal and adjust variables as required
   const checkUserSequence = () => {
     //If equal
@@ -215,11 +248,7 @@ $(() => {
       nextLevelSequence(); //Add a random tile to the sequence
       score = score + (100 * `1.${sequenceNumber}`); //Increase score by 130, increasing by 10 every level
       $score.html(`Score ${score}`); //Display the new score
-      if (displayTime <= 500) {
-        displayTime = displayTime - 50;
-      } else {
-        displayTime = displayTime - 100;
-      }
+      reduceTime();
     //If not equal
     } else {
       console.log('User sequence is wrong');
@@ -244,13 +273,13 @@ $(() => {
   //Enable the check button
   $start.on('click', () => {
     playSequence();
-    $start.attr('disabled','disabled');
     $check.removeAttr('disabled');
   });
 
   //When check button is clicked check both the array contents and length are equal
   //Disable the check button
   //Enable the start button
+  //If user was wrong re-enable the check button and diable the start button
   $check.on('click', () => {
     console.log(`Generated: ${generatedSequence}`);
     console.log(`User: ${userSequence}`);
@@ -259,6 +288,10 @@ $(() => {
     checkUserSequence();
     $check.attr('disabled','disabled');
     $start.removeAttr('disabled');
+    if (userCorrect === false) {
+      $check.removeAttr('disabled');
+      $start.attr('disabled','disabled');
+    }
   });
 
   //When restart button is clicked trigger restart function
