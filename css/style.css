@@ -104,7 +104,7 @@ footer {
   color: #F4F1BB;
   display: flex;
   font-weight: bolder;
-  font-size: 30px;
+  font-size: 40px;
   justify-content: space-around;
 }
 
@@ -143,11 +143,12 @@ footer {
 }
 
 .restart-button {
-  background-color: #F4F1BB;
+  background-color: #ED6A5A;
   border-radius: 5px;
-  color: #5CA4A9;
+  color: #F4F1BB;
+  display: none;
   font-family: 'Raleway', sans-serif;
-  font-size: 20px;
+  font-size: 40px;
   font-weight: bolder;
   padding: 3px 15px;
 }

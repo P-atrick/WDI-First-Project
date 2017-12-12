@@ -1,68 +1,28 @@
-//Pseudocode
-
-//Game start
-//Set sequenceNumber to 1 (level 1)
-//Create array containing all tiles tilesArray
-//Create empty array for randomly generated sequence generatedSequence
-//Create empty array for user inputted sequence userSequence
-
-//Loop over all tiles tilesArray
-//Randomly choose tiles
-//Push to generatedSequence
-
-//Display generatedSequence sequence on tiles
-//Loop over generatedSequence
-//Display index[0], setTimeout(1s), display index [1], setTimeout(1s), display index [2].........
-//Display by adding/removing classes
-
-//End computers turn
-//Reset board
-
-//Allow user input
-//User is repeating sequence
-//On click, push clicked tile to userSequence array
-
-//Check user sequence is correct
-//When userSequence.length === sequence number
-//Loop over generatedSequence and userSequence
-//Compare the indexes
-//If indexes are equal user sequence is correct
-//sequenceNumber + 1
-//Level + 1
-//Score + 1
-//Reduce setTimeout by 0.1s
-//Reset board
-//Repeat lines 9 to 30
-
-//If indexes are not equal then user sequence is wrong
-//User lost
-//End game
-console.log('JS loaded');
-
-let sequenceNumber = 2;
-let score = 0;
-const tilesArray = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9'];
-let generatedSequence = [];
-let userSequence = [];
-let lives = 3;
-let displayTime = 900;
+//Variables
 const chosen = Math.floor(Math.random() * 9);
 let contentsEqual = false;
+let displayTime = 900;
+let generatedSequence = [];
 let lengthEqual = false;
+let lives = 3;
+let score = 0;
+let sequenceNumber = 2;
+const tilesArray = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9'];
 let userCorrect = null;
-
+let userSequence = [];
 
 $(() => {
-  //Variables
-  const $h1 = ('h1');
+  //$Variables
   const $body = $('body');
-  const $main = $('main');
-  const $level = $('.level');
-  const $score = $('.score');
-  const $lives = $('.lives');
-  const $start = $('.start-button');
   const $check = $('.check-button');
+  const $h1 = ('h1');
+  const $level = $('.level');
+  const $lives = $('.lives');
+  const $main = $('main');
   const $restart = $('.restart-button');
+  const $score = $('.score');
+  const $start = $('.start-button');
+  const $startCheck = $('.start-check-button-wrapper');
   const $tiles = $('.tile');
   const $tileId = $tiles.attr('id');
   const $tile1 = $('#tile1');
@@ -74,17 +34,16 @@ $(() => {
   const $tile7 = $('#tile7');
   const $tile8 = $('#tile8');
   const $tile9 = $('#tile9');
-  const $startCheck = $('.start-check-button-wrapper');
 
   //Generate a random sequence of length sequenceNumber and push it to the generatedSequence array
   const determineSequence = () => {
     for (let i = 0; i < sequenceNumber; i++) {
       generatedSequence.push(tilesArray[chosen]);
-      //Remove duplicate indexes
+      //If the chosen tile is equal to the tile either side choose a new tile / Remove duplicate indexes
       if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
         generatedSequence.splice(i, 1);
         generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
-        // If the above if statement added another dupliacate replace the duplicate index
+        // If the above if statement chose a duplicate again replace the duplicate tile
         if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
           generatedSequence.splice(i, 1);
           generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
@@ -102,9 +61,9 @@ $(() => {
 
   const nextLevelSequence = () => {
     for (let i = 0; i < 1; i++) {
-      generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]);
+      generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]); //Push a new tile to the generated sequence
       console.log(generatedSequence);
-      userSequence = [];
+      userSequence = []; //Clear the user sequence
     }
   };
 
@@ -208,7 +167,6 @@ $(() => {
     }
   };
 
-
   //Log the user's sequence in userSequence
   $tiles.on('click', (e) => {
     const id = $(e.target).attr('id');
@@ -267,35 +225,51 @@ $(() => {
       console.log('User sequence is wrong');
       userCorrect = false;
       console.log(userCorrect);
-      userSequence = [];
-      lives = lives - 1;
+      userSequence = []; //Clear the user sequence so they can try again
+      lives = lives - 1; //Remove 1 life
+      //When the user has no lives left
+      //Remove the start and check buttons
+      //Show the restart button
       if (lives === 0) {
         $startCheck.css('display', 'none');
+        $restart.css('display', 'block');
       }
-      $lives.html(`Lives ${lives}`);
+      $lives.html(`Lives ${lives}`); //Display the number of lives left
     }
   };
 
+  //BUTTON CLICKS
   //When start button is clicked display the generated sequence
+  //Disable the start button
+  //Enable the check button
   $start.on('click', () => {
     playSequence();
+    $start.attr('disabled','disabled');
+    $check.removeAttr('disabled');
   });
 
   //When check button is clicked check both the array contents and length are equal
+  //Disable the check button
+  //Enable the start button
   $check.on('click', () => {
     console.log(`Generated: ${generatedSequence}`);
-    console.log(`Generated: ${userSequence}`);
+    console.log(`User: ${userSequence}`);
     compareArrayLength();
     compareArrayContents();
     checkUserSequence();
+    $check.attr('disabled','disabled');
+    $start.removeAttr('disabled');
   });
 
+  //When restart button is clicked trigger restart function
+  //Display start and check buttons, remove restart button
   $restart.on('click', () => {
     restart();
     $startCheck.css('display', 'flex');
+    $restart.css('display', 'none');
   });
 
-  //Display current level and score
+  //Display current level, score and lives
   $level.html(`Level ${sequenceNumber - 1}`);
   $score.html(`Score ${score}`);
   $lives.html(`Lives ${lives}`);
