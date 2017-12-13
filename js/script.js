@@ -113,9 +113,11 @@ $(() => {
   //Display instructions when hovering over 'Instructions'
   const displayInstructions = () => {
     $instructionsOverlay.css('display', 'block');
+    $instructionsText.css('color', '#5CA4A9');
   };
   const removeInstructions = () => {
     $instructionsOverlay.css('display', 'none');
+    $instructionsText.css('color', '#F4F1BB');
   };
   $instructionsText.hover(displayInstructions, removeInstructions);
 
