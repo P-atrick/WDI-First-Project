@@ -121,90 +121,16 @@ $(() => {
   //Display the generated sequence by lighting up the tiles
   const playSequence = () => {
     for (let i = 0; i < generatedSequence.length; i++) {
-      // for (let j = 0; j < tilesArray.length; j++) {
-      //   console.log(tilesArray[j]);
-      //   if (generatedSequence[i] === tilesArray[j]) {
-      //     const $chosen = $(generatedSequence[i]);
-      //     console.log($chosen.get());
-      //     setTimeout(() => {
-      //       $(generatedSequence[i]).addClass(`${generatedSequence[i]}-lit`);
-      //       setTimeout(() => {
-      //         $(generatedSequence[i]).removeClass(`${generatedSequence[i]}-lit`);
-      //       }, displayTime);
-      //     }, displayTime * (i + 1));
-      //   }
-      // }
-      if (generatedSequence[i] === 'tile1') {
-        setTimeout(() => {
-          $tile1.addClass(`${generatedSequence[i]}-lit`);
+      for (let j = 0; j < tilesArray.length; j++) {
+        if (generatedSequence[i] === tilesArray[j]) {
+          const $chosenId = $(`#${tilesArray[j]}`);
           setTimeout(() => {
-            $tile1.removeClass(`${generatedSequence[i]}-lit`);
-          }, displayTime);
-        }, displayTime * (i + 1));
-      }
-      if (generatedSequence[i] === 'tile2') {
-        setTimeout(() => {
-          $tile2.addClass(`${generatedSequence[i]}-lit`);
-          setTimeout(() => {
-            $tile2.removeClass(`${generatedSequence[i]}-lit`);
-          }, displayTime);
-        }, displayTime * (i + 1));
-      }
-      if (generatedSequence[i] === 'tile3') {
-        setTimeout(() => {
-          $tile3.addClass(`${generatedSequence[i]}-lit`);
-          setTimeout(() => {
-            $tile3.removeClass(`${generatedSequence[i]}-lit`);
-          }, displayTime);
-        }, displayTime * (i + 1));
-      }
-      if (generatedSequence[i] === 'tile4') {
-        setTimeout(() => {
-          $tile4.addClass(`${generatedSequence[i]}-lit`);
-          setTimeout(() => {
-            $tile4.removeClass(`${generatedSequence[i]}-lit`);
-          }, displayTime);
-        }, displayTime * (i + 1));
-      }
-      if (generatedSequence[i] === 'tile5') {
-        setTimeout(() => {
-          $tile5.addClass(`${generatedSequence[i]}-lit`);
-          setTimeout(() => {
-            $tile5.removeClass(`${generatedSequence[i]}-lit`);
-          }, displayTime);
-        }, displayTime * (i + 1));
-      }
-      if (generatedSequence[i] === 'tile6') {
-        setTimeout(() => {
-          $tile6.addClass(`${generatedSequence[i]}-lit`);
-          setTimeout(() => {
-            $tile6.removeClass(`${generatedSequence[i]}-lit`);
-          }, displayTime);
-        }, displayTime * (i + 1));
-      }
-      if (generatedSequence[i] === 'tile7') {
-        setTimeout(() => {
-          $tile7.addClass(`${generatedSequence[i]}-lit`);
-          setTimeout(() => {
-            $tile7.removeClass(`${generatedSequence[i]}-lit`);
-          }, displayTime);
-        }, displayTime * (i + 1));
-      }
-      if (generatedSequence[i] === 'tile8') {
-        setTimeout(() => {
-          $tile8.addClass(`${generatedSequence[i]}-lit`);
-          setTimeout(() => {
-            $tile8.removeClass(`${generatedSequence[i]}-lit`);
-          }, displayTime);
-        }, displayTime * (i + 1));
-      }
-      if (generatedSequence[i] === 'tile9') {
-        setTimeout(() => {
-          $tile9.addClass(`${generatedSequence[i]}-lit`);
-          setTimeout(() => {
-            $tile9.removeClass(`${generatedSequence[i]}-lit`);
-          }, displayTime);
-        }, displayTime * (i + 1));
+            $chosenId.addClass(`${generatedSequence[i]}-lit`);
+            setTimeout(() => {
+              $chosenId.removeClass(`${generatedSequence[i]}-lit`);
+            }, displayTime);
+          }, displayTime * (i + 1));
+        }
       }
     }
   };
