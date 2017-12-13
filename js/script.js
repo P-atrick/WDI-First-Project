@@ -102,7 +102,7 @@ $(() => {
   const $tile9 = $('#tile9');
   const $storedScore = localStorage.getItem('score');
 
-
+  //Reset everything to start a new game
   const restart = () => {
     sequenceNumber = 2; //Set sequence number to 2 / Level to 1
     $level.html(`Level ${sequenceNumber - 1}`); //Display the new level
@@ -240,6 +240,7 @@ $(() => {
     }
   };
 
+  //Make the sequence be displayed more quickly at higher levels
   const reduceTime = () => {
     if (displayTime <=200) {
       displayTime = displayTime - 20;
@@ -258,12 +259,13 @@ $(() => {
   };
 
   const newScore = () => {
-    score = score + (100 * `1.${sequenceNumber}`); //Increase score by 130, increasing by 10 every level
+    score = score + (100 * `1.${sequenceNumber}`); //Increase score by 100 with a multiplier of the length of the sequence
     $score.html(`Score ${score}`); //Display the new score
   };
 
   const removeLives = () => {
-    lives = lives - 1; //Remove 1 life
+    //Remove 1 life
+    lives = lives - 1;
     //When the user has no lives left
     //Remove the play and check buttons
     //Show the restart button
@@ -274,6 +276,7 @@ $(() => {
     $lives.html(`Lives ${lives}`); //Display the number of lives left
   };
 
+  //Make score turn green and bounce
   const scoreAnimate = () => {
     setTimeout(() => {
       $score.addClass('animated rubberBand-green');
@@ -283,6 +286,7 @@ $(() => {
     }, 0);
   };
 
+  //Make lives red and shake
   const livesAnimate = () => {
     setTimeout(() => {
       $lives.addClass('animated tada-red');
@@ -311,6 +315,7 @@ $(() => {
     }
   };
 
+  //Add and remove an overlay that prevents the user from clicking
   const preventClick = () => {
     setTimeout(() => {
       $main.addClass('overlay');
