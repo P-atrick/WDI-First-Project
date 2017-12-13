@@ -1,6 +1,3 @@
-//Local Storage
-localStorage.setItem('score', 0);
-
 //Variables
 let contentsEqual = false;
 let displayTime = 700;
