@@ -16,10 +16,12 @@ let userSequence = [];
 //Generate a random sequence of length sequenceNumber and push it to the generatedSequence array
 const determineSequence = () => {
   for (let i = 0; i < sequenceNumber; i++) {
+    //Splice out the index, splice in a new random index from tilesArray
     const spliceDuplicates = () => {
       generatedSequence.splice(i, 1);
       generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
     };
+    //Push a random index from tilesArray to the generatedSequence array
     generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]);
     //Remove and replace duplicate tiles
     if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
@@ -52,6 +54,7 @@ const nextLevelSequence = () => {
       generatedSequence.splice(i, 1);
       generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
     };
+    //Push a random index from tilesArray to the generatedSequence array
     generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]);
     //Remove and replace duplicate tiles
     if (generatedSequence[i] === generatedSequence[i - 1]) {
@@ -73,7 +76,7 @@ const nextLevelSequence = () => {
       }
     }
     console.log(generatedSequence);
-    userSequence = []; //Clear the user sequence
+    userSequence = [];
   }
 };
 
@@ -104,14 +107,14 @@ $(() => {
 
   //Reset everything to start a new game
   const restart = () => {
-    sequenceNumber = 2; //Set sequence number to 2 / Level to 1
-    $level.html(`Level ${sequenceNumber - 1}`); //Display the new level
-    score = 0; //Set score to 0
-    $score.html(`Score ${score}`); //Display the new score
-    lives = 3; //Set lives to 3
-    $lives.html(`Lives ${lives}`); //Display the new lives
-    generatedSequence = []; //Clear the generated sequence
-    userSequence = []; //Clear the user sequence
+    sequenceNumber = 2;
+    $level.html(`Level ${sequenceNumber - 1}`);
+    score = 0;
+    $score.html(`Score ${score}`);
+    lives = 3;
+    $lives.html(`Lives ${lives}`);
+    generatedSequence = [];
+    userSequence = [];
     displayTime = 700;
     console.log(generatedSequence);
     console.log(userSequence);
@@ -120,10 +123,16 @@ $(() => {
 
   //Display the generated sequence by lighting up the tiles
   const playSequence = () => {
+    //Loop over generatedSequence array
     for (let i = 0; i < generatedSequence.length; i++) {
+      //Loop over tilesArray array
       for (let j = 0; j < tilesArray.length; j++) {
+        //If the index in generatedSequence is equal to an index in tilesArray
+        //$chosenId is equal to a tile id equal to the id's used in index.html, eg #tile1, #tile2...
         if (generatedSequence[i] === tilesArray[j]) {
           const $chosenId = $(`#${tilesArray[j]}`);
+          //Add lit class then remove lit class to the tile with that id after set time
+          //Time increases every loop so as to display in order, not all at the same time
           setTimeout(() => {
             $chosenId.addClass(`${generatedSequence[i]}-lit`);
             setTimeout(() => {
@@ -137,7 +146,9 @@ $(() => {
 
   //Log the user's sequence in userSequence
   $tiles.on('click', (e) => {
+    //id = the id from the clicked tile
     const id = $(e.target).attr('id');
+    //Add lit class then remove lit class to the tile after 0.6s
     setTimeout(() => {
       $(e.target).addClass(`${id}-lit`);
       setTimeout(() => {
@@ -191,17 +202,13 @@ $(() => {
     $score.html(`Score ${score}`);
   };
 
+  //Remove 1 life and if none left adjust visible buttons
   const removeLives = () => {
-    //Remove 1 life
     lives = lives - 1;
-    //When the user has no lives left
-    //Remove the play and check buttons
-    //Show the restart button
     if (lives === 0) {
       $playCheck.css('display', 'none');
       $restart.css('display', 'block');
     }
-    //Display the number of lives left
     $lives.html(`Lives ${lives}`);
   };
 
@@ -227,20 +234,22 @@ $(() => {
 
   //Check if both the contents and length are equal and run functions to adjust variables as required
   const checkUserSequence = () => {
-    if (lengthEqual && contentsEqual === true) { //If equal
+    //If equal
+    if (lengthEqual && contentsEqual === true) {
       console.log('User sequence is correct');
       userCorrect = true;
-      newLevel(); //Increase sequence number and level by 1. Display new level
-      nextLevelSequence(); //Add a random tile to the sequence
-      newScore(); //Increase score. Display new score
-      reduceTime(); //Increase speed at which sequence is displayed
-      scoreAnimate(); //Make score turn green and bounce
-    } else { //If not equal
+      newLevel();
+      nextLevelSequence();
+      newScore();
+      reduceTime();
+      scoreAnimate();
+    //If not equal
+    } else {
       console.log('User sequence is wrong');
       userCorrect = false;
-      userSequence = []; //Clear the user sequence so they can try again
-      removeLives(); //Remove 1 life, if 0 allow user to restart
-      livesAnimate(); //Make lives red and shake
+      userSequence = [];
+      removeLives();
+      livesAnimate();
     }
   };
 
@@ -259,32 +268,21 @@ $(() => {
 
   //When play button is clicked
   $play.on('click', () => {
-    //Prevent clicking while sequence plays
     preventClick();
-    //Display generated sequence
     playSequence();
-    //Disable the play button
     $play.attr('disabled','disabled');
-    //Enable the check button
     $check.removeAttr('disabled');
-    //Clear user sequence
     userSequence = [];
   });
 
   //When check button is clicked
   $check.on('click', () => {
-    //Log sequences
     console.log(`Generated: ${generatedSequence}`);
     console.log(`User: ${userSequence}`);
-    //Check arrays are the same length
     compareArrayLength();
-    //Check arrays have the same contents
     compareArrayContents();
-    //Check both length and contents are the same at the same time
     checkUserSequence();
-    //Disable the check button
     $check.attr('disabled','disabled');
-    //Enable the play button
     $play.removeAttr('disabled');
     if (userCorrect === false) {
       $check.removeAttr('disabled');
@@ -294,15 +292,10 @@ $(() => {
 
   //When restart button is clicked
   $restart.on('click', () => {
-    //Run restart function
     restart();
-    //Show play and check buttons
     $playCheck.css('display', 'flex');
-    //Remove restart button
     $restart.css('display', 'none');
-    //Allow user to click play again
     $play.removeAttr('disabled');
-    //Prevent user clicking check
     $check.attr('disabled','disabled');
   });
 
