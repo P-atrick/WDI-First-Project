@@ -29,11 +29,9 @@ body {
 /*HEADER*/
 header {
   align-items: center;
-  /*display: flex;*/
   margin-bottom: 10px;
 }
 .header-wrapper {
-  /*display: flex;*/
   justify-content: center;
   width: 100%;
 }
