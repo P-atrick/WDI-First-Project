@@ -166,7 +166,7 @@ $(() => {
     }
   };
 
-  //Make the sequence be displayed more quickly at higher levels
+  //Make the sequence be displayed more quickly at higher levels, speed increase becomes less severe as it gets faster
   const reduceTime = () => {
     if (displayTime <=200) {
       displayTime = displayTime - 20;
@@ -179,14 +179,16 @@ $(() => {
     }
   };
 
+  //Add one to the sequence length and to the level. Display new level
   const newLevel = () => {
-    sequenceNumber++; //Add one to the sequence length and to the level
-    $level.html(`Level ${sequenceNumber - 1}`); //Display the new level
+    sequenceNumber++;
+    $level.html(`Level ${sequenceNumber - 1}`);
   };
 
+  //Increase score by 100 with a multiplier of the length of the sequence. Display new score
   const newScore = () => {
-    score = score + (100 * `1.${sequenceNumber}`); //Increase score by 100 with a multiplier of the length of the sequence
-    $score.html(`Score ${score}`); //Display the new score
+    score = score + (100 * `1.${sequenceNumber}`);
+    $score.html(`Score ${score}`);
   };
 
   const removeLives = () => {
@@ -199,7 +201,8 @@ $(() => {
       $playCheck.css('display', 'none');
       $restart.css('display', 'block');
     }
-    $lives.html(`Lives ${lives}`); //Display the number of lives left
+    //Display the number of lives left
+    $lives.html(`Lives ${lives}`);
   };
 
   //Make score turn green and bounce
@@ -231,13 +234,13 @@ $(() => {
       nextLevelSequence(); //Add a random tile to the sequence
       newScore(); //Increase score. Display new score
       reduceTime(); //Increase speed at which sequence is displayed
-      scoreAnimate();
+      scoreAnimate(); //Make score turn green and bounce
     } else { //If not equal
       console.log('User sequence is wrong');
       userCorrect = false;
       userSequence = []; //Clear the user sequence so they can try again
       removeLives(); //Remove 1 life, if 0 allow user to restart
-      livesAnimate();
+      livesAnimate(); //Make lives red and shake
     }
   };
 
@@ -251,29 +254,37 @@ $(() => {
     }, 0);
   };
 
+
   //BUTTON CLICKS
-  //When play button is clicked display the generated sequence
-  //Disable the play button
-  //Enable the check button
+
+  //When play button is clicked
   $play.on('click', () => {
+    //Prevent clicking while sequence plays
     preventClick();
+    //Display generated sequence
     playSequence();
+    //Disable the play button
     $play.attr('disabled','disabled');
+    //Enable the check button
     $check.removeAttr('disabled');
+    //Clear user sequence
     userSequence = [];
   });
 
-  //When check button is clicked check both the array contents and length are equal
-  //Disable the check button
-  //Enable the play button
-  //If user was wrong re-enable the check button and diable the play button
+  //When check button is clicked
   $check.on('click', () => {
+    //Log sequences
     console.log(`Generated: ${generatedSequence}`);
     console.log(`User: ${userSequence}`);
+    //Check arrays are the same length
     compareArrayLength();
+    //Check arrays have the same contents
     compareArrayContents();
+    //Check both length and contents are the same at the same time
     checkUserSequence();
+    //Disable the check button
     $check.attr('disabled','disabled');
+    //Enable the play button
     $play.removeAttr('disabled');
     if (userCorrect === false) {
       $check.removeAttr('disabled');
@@ -281,13 +292,17 @@ $(() => {
     }
   });
 
-  //When restart button is clicked trigger restart function
-  //Display play and check buttons, remove restart button
+  //When restart button is clicked
   $restart.on('click', () => {
+    //Run restart function
     restart();
+    //Show play and check buttons
     $playCheck.css('display', 'flex');
+    //Remove restart button
     $restart.css('display', 'none');
+    //Allow user to click play again
     $play.removeAttr('disabled');
+    //Prevent user clicking check
     $check.attr('disabled','disabled');
   });
 
