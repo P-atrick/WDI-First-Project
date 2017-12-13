@@ -98,9 +98,7 @@ const nextLevelSequence = () => {
 
 $(() => {
   //$Variables
-  const $body = $('body');
   const $check = $('.check-button');
-  const $h1 = $('h1');
   const $instructionsText = $('.instructions-text');
   const $instructionsOverlay = $('.instructions-overlay');
   const $level = $('.level');
@@ -111,17 +109,6 @@ $(() => {
   const $play = $('.play-button');
   const $playCheck = $('.play-check-button-wrapper');
   const $tiles = $('.tile');
-  const $tileId = $('.tile').attr('id');
-  const $tile1 = $('#tile1');
-  const $tile2 = $('#tile2');
-  const $tile3 = $('#tile3');
-  const $tile4 = $('#tile4');
-  const $tile5 = $('#tile5');
-  const $tile6 = $('#tile6');
-  const $tile7 = $('#tile7');
-  const $tile8 = $('#tile8');
-  const $tile9 = $('#tile9');
-  const $storedScore = localStorage.getItem('score');
 
   const displayInstructions = () => {
     $instructionsOverlay.css('display', 'block');
@@ -174,7 +161,7 @@ $(() => {
   $tiles.on('click', (e) => {
     //id = the id from the clicked tile
     const id = $(e.target).attr('id');
-    //Add lit class then remove lit class to the tile after 0.6s
+    //Add lit class then remove lit class from the tile after 0.6s
     setTimeout(() => {
       $(e.target).addClass(`${id}-lit`);
       setTimeout(() => {
