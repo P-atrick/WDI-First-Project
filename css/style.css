@@ -57,6 +57,20 @@ h1 {
   width: 100px;
 }
 
+.instructions-overlay-heading {
+  display: flex;
+  font-size: 30px;
+  font-weight: bold;
+  justify-content: center;
+  margin-top: 5px;
+  text-decoration: underline;
+}
+
+.instructions-contents {
+  line-height: 35px;
+  font-size: 20px;
+  font-weight: bold;
+}
 
 /*MAIN*/
 main {
@@ -71,7 +85,7 @@ main {
   display: none;
   position: absolute;
   background-color: rgba(244,241,187,0.9);
-  border: 3px solid rgba(182,182,182,0.9);
+  border: 3px solid rgba(182,182,182,1);
   border-radius: 15px;
   color: #5CA4A9;
   height: 495px;
@@ -198,8 +212,23 @@ footer {
 
 /*MEDIA QUERY*/
 @media screen and (max-width: 500px) {
+
   main {
   width: 345px;
+  }
+
+  .instructions-overlay {
+    height: 345px;
+    width: 345px;
+  }
+
+  .instructions-overlay-heading {
+    font-size: 20px;
+  }
+
+  .instructions-contents {
+    font-size: 13px;
+    line-height: 30px;
   }
 
   .tile {
@@ -231,6 +260,29 @@ footer {
 @media screen and (max-width: 350px) {
   main {
   width: 225px;
+  }
+
+  .instructions-overlay {
+    height: 225px;
+    width: 225px;
+  }
+
+  .instructions-overlay-heading {
+    font-size: 13px;
+  }
+
+  .instructions-contents {
+    font-size: 10px;
+    line-height: 20px;
+  }
+
+  .instructions-text {
+    font-size: 10px;
+    width: 50px;
+  }
+
+  ul {
+    margin-left: -10px;
   }
 
   h1 {
