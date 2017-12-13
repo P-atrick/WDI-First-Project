@@ -83,7 +83,7 @@ main {
   display: none;
   position: absolute;
   background-color: rgba(244,241,187,0.9);
-  border: 3px solid rgba(182,182,182,1);
+  border: 3px solid rgba(105,105,105,1);
   border-radius: 15px;
   color: #5CA4A9;
   height: 495px;
@@ -99,7 +99,7 @@ main {
 
 .tile {
   background-color: #696969;
-  border: 3px solid rgba(244,241,187,0.6);
+  border: 3px solid rgba(244,241,187,0.8);
   border-radius: 10px;
   height: 150px;
   margin-bottom: 5px;
@@ -110,39 +110,39 @@ main {
 /*TILE TOGGLES*/
 .tile1-lit {
   background-color: #00FFFF;
-  border: 3px solid rgba(182,182,182,0.9);
+  border: 3px solid rgba(105,105,105,0.9);
 }
 .tile2-lit {
   background-color: #FF00C3;
-  border: 3px solid rgba(182,182,182,0.9);
+  border: 3px solid rgba(105,105,105,0.9);
 }
 .tile3-lit {
   background-color: #FFFB00;
-  border: 3px solid rgba(182,182,182,0.9);
+  border: 3px solid rgba(105,105,105,0.9);
 }
 .tile4-lit {
   background-color: #84FF00;
-  border: 3px solid rgba(182,182,182,0.9);
+  border: 3px solid rgba(105,105,105,0.9);
 }
 .tile5-lit {
   background-color: #FF0000;
-  border: 3px solid rgba(182,182,182,0.9);
+  border: 3px solid rgba(105,105,105,0.9);
 }
 .tile6-lit {
   background-color: #AF00E7;
-  border: 3px solid rgba(182,182,182,0.9);
+  border: 3px solid rgba(105,105,105,0.9);
 }
 .tile7-lit {
   background-color: #FF9419;
-  border: 3px solid rgba(182,182,182,0.9);
+  border: 3px solid rgba(105,105,105,0.9);
 }
 .tile8-lit {
   background-color: #0004FF;
-  border: 3px solid rgba(182,182,182,0.9);
+  border: 3px solid rgba(105,105,105,0.9);
 }
 .tile9-lit {
   background-color: #E9FF0A;
-  border: 3px solid rgba(182,182,182,0.9);
+  border: 3px solid rgba(105,105,105,0.9);
 }
 
 /*FOOTER*/
