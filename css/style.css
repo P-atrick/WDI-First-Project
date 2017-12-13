@@ -46,17 +46,19 @@ h1 {
   margin-bottom: 30px;
 }
 
-.instructions {
+.instructions-text {
   background-color: #5CA4A9;
   border: none;
   color: #F4F1BB;
   display: flex;
+  justify-content: center;
   font-size: 18px;
   margin: 0 auto;
+  width: 100px;
 }
 
-/*MAIN*/
 
+/*MAIN*/
 main {
   display: flex;
   justify-content: center;
@@ -65,6 +67,16 @@ main {
   width: 495px;
 }
 
+.instructions-overlay {
+  display: none;
+  position: absolute;
+  background-color: rgba(244,241,187,0.9);
+  border: 3px solid rgba(182,182,182,0.9);
+  border-radius: 15px;
+  color: #5CA4A9;
+  height: 495px;
+  width: 495px;
+}
 
 .tiles-wrapper {
   display: flex;

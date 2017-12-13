@@ -84,7 +84,9 @@ $(() => {
   //$Variables
   const $body = $('body');
   const $check = $('.check-button');
-  const $h1 = ('h1');
+  const $h1 = $('h1');
+  const $instructionsText = $('.instructions-text');
+  const $instructionsOverlay = $('.instructions-overlay');
   const $level = $('.level');
   const $lives = $('.lives');
   const $main = $('main');
@@ -104,6 +106,16 @@ $(() => {
   const $tile8 = $('#tile8');
   const $tile9 = $('#tile9');
   const $storedScore = localStorage.getItem('score');
+
+  const displayInstructions = () => {
+    $instructionsOverlay.css('display', 'block');
+  };
+  const removeInstructions = () => {
+    $instructionsOverlay.css('display', 'none');
+  };
+
+  //Display instructions when hovering over 'Instructions'
+  $instructionsText.hover(displayInstructions, removeInstructions);
 
   //Reset everything to start a new game
   const restart = () => {
@@ -262,7 +274,6 @@ $(() => {
       }, displayTime * (sequenceNumber + 1));
     }, 0);
   };
-
 
   //BUTTON CLICKS
 
