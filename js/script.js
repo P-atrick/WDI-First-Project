@@ -8,7 +8,7 @@ let generatedSequence = [];
 let lengthEqual = false;
 let lives = 3;
 let score = 0;
-let sequenceNumber = 2;
+let sequenceNumber = 2; //At level one sequence should contain 2 tiles
 const tilesArray = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9'];
 let userCorrect = null;
 let userSequence = [];
@@ -110,14 +110,13 @@ $(() => {
   const $playCheck = $('.play-check-button-wrapper');
   const $tiles = $('.tile');
 
+  //Display instructions when hovering over 'Instructions'
   const displayInstructions = () => {
     $instructionsOverlay.css('display', 'block');
   };
   const removeInstructions = () => {
     $instructionsOverlay.css('display', 'none');
   };
-
-  //Display instructions when hovering over 'Instructions'
   $instructionsText.hover(displayInstructions, removeInstructions);
 
   //Reset everything to start a new game
@@ -159,7 +158,7 @@ $(() => {
 
   //Log the user's sequence in userSequence
   $tiles.on('click', (e) => {
-    //id = the id from the clicked tile
+    // set id variable to = the id from the clicked tile
     const id = $(e.target).attr('id');
     //Add lit class then remove lit class from the tile after 0.6s
     setTimeout(() => {
@@ -202,7 +201,7 @@ $(() => {
     }
   };
 
-  //Add one to the sequence length and to the level. Display new level
+  //Add 1 to the sequence length and thus to the level. Display new level
   const newLevel = () => {
     sequenceNumber++;
     $level.html(`Level ${sequenceNumber - 1}`);
