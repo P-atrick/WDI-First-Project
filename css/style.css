@@ -207,7 +207,10 @@ footer {
   font-family: 'Raleway', sans-serif;
   font-size: 40px;
   font-weight: bolder;
-  padding: 3px 15px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: auto;
+  padding-right: auto;
 }
 
 .level, .score, .lives {
