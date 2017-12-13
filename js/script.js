@@ -51,7 +51,6 @@ const determineSequence = () => {
         }
       }
     }
-    console.log(generatedSequence);
   }
 };
 determineSequence();
@@ -93,7 +92,6 @@ const nextLevelSequence = () => {
         }
       }
     }
-    console.log(generatedSequence);
     userSequence = [];
   }
 };
@@ -146,8 +144,6 @@ $(() => {
     generatedSequence = [];
     userSequence = [];
     displayTime = 700;
-    console.log(generatedSequence);
-    console.log(userSequence);
     determineSequence();
   };
 
@@ -186,7 +182,6 @@ $(() => {
       }, 600);
     }, 0);
     userSequence.push(id);
-    console.log(userSequence);
   });
 
   //Compare user sequence to generated sequence - Length
@@ -266,7 +261,6 @@ $(() => {
   const checkUserSequence = () => {
     //If equal
     if (lengthEqual && contentsEqual === true) {
-      console.log('User sequence is correct');
       userCorrect = true;
       newLevel();
       nextLevelSequence();
@@ -275,7 +269,6 @@ $(() => {
       scoreAnimate();
     //If not equal
     } else {
-      console.log('User sequence is wrong');
       userCorrect = false;
       userSequence = [];
       removeLives();
@@ -306,8 +299,6 @@ $(() => {
 
   //When check button is clicked
   $check.on('click', () => {
-    console.log(`Generated: ${generatedSequence}`);
-    console.log(`User: ${userSequence}`);
     compareArrayLength();
     compareArrayContents();
     checkUserSequence();

@@ -245,11 +245,15 @@ footer {
 
   .play-button {
     font-size: 25px;
+    padding-left: auto;
+    padding-right: auto;
     width: 120px;
   }
 
   .check-button {
     font-size: 25px;
+    padding-left: auto;
+    padding-right: auto;
     width: 120px;
   }
 
@@ -303,11 +307,15 @@ footer {
 
   .play-button {
     font-size: 16px;
+    padding-left: auto;
+    padding-right: auto;
     width: 72px;
   }
 
   .check-button {
     font-size: 16px;
+    padding-left: auto;
+    padding-right: auto;
     width: 72px;
   }
 
