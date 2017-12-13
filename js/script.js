@@ -36,6 +36,15 @@ const determineSequence = () => {
               spliceDuplicates();
               if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
                 spliceDuplicates();
+                if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+                  spliceDuplicates();
+                  if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+                    spliceDuplicates();
+                    if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
+                      spliceDuplicates();
+                    }
+                  }
+                }
               }
             }
           }
@@ -69,6 +78,15 @@ const nextLevelSequence = () => {
               spliceDuplicates();
               if (generatedSequence[i] === generatedSequence[i - 1]) {
                 spliceDuplicates();
+                if (generatedSequence[i] === generatedSequence[i - 1]) {
+                  spliceDuplicates();
+                  if (generatedSequence[i] === generatedSequence[i - 1]) {
+                    spliceDuplicates();
+                    if (generatedSequence[i] === generatedSequence[i - 1]) {
+                      spliceDuplicates();
+                    }
+                  }
+                }
               }
             }
           }
