@@ -175,6 +175,8 @@ footer {
   font-size: 40px;
   font-weight: bolder;
   margin-right: 10px;
+  padding-left: auto;
+  padding-right: auto;
   width: 180px;
 }
 
@@ -186,6 +188,8 @@ footer {
   font-size: 40px;
   font-weight: bolder;
   margin-left: 10px;
+  padding-left: auto;
+  padding-right: auto;
   width: 180px;
 }
 
