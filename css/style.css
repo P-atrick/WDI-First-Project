@@ -29,18 +29,30 @@ body {
 /*HEADER*/
 header {
   align-items: center;
-  color: #F4F1BB;
-  display: flex;
+  /*display: flex;*/
   margin-bottom: 10px;
 }
 .header-wrapper {
-  display: flex;
+  /*display: flex;*/
   justify-content: center;
   width: 100%;
 }
 
 h1 {
+  color: #F4F1BB;
+  display: flex;
+  justify-content: center;
   font-size: 55px;
+  margin-bottom: 30px;
+}
+
+.instructions {
+  background-color: #5CA4A9;
+  border: none;
+  color: #F4F1BB;
+  display: flex;
+  font-size: 18px;
+  margin: 0 auto;
 }
 
 /*MAIN*/
@@ -52,6 +64,7 @@ main {
   margin-bottom: 40px;
   width: 495px;
 }
+
 
 .tiles-wrapper {
   display: flex;
@@ -125,7 +138,7 @@ footer {
 .play-check-button-wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .play-button {
