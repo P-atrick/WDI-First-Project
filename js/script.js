@@ -14,40 +14,8 @@ let userSequence = [];
 const determineSequence = () => {
   for (let i = 0; i < sequenceNumber; i++) {
     //Splice out the index, splice in a new random index from tilesArray
-    const spliceDuplicates = () => {
-      generatedSequence.splice(i, 1);
-      generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
-    };
     //Push a random index from tilesArray to the generatedSequence array
     generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]);
-    //Remove and replace duplicate tiles
-    if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-      spliceDuplicates();
-      if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-        spliceDuplicates();
-        if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-          spliceDuplicates();
-          if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-            spliceDuplicates();
-            if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-              spliceDuplicates();
-              if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-                spliceDuplicates();
-                if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-                  spliceDuplicates();
-                  if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-                    spliceDuplicates();
-                    if (generatedSequence[i] === generatedSequence[i + 1] || generatedSequence[i] === generatedSequence[i - 1]) {
-                      spliceDuplicates();
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
   }
 };
 determineSequence();
@@ -55,40 +23,8 @@ determineSequence();
 //Push a new tile to the generated sequence
 const nextLevelSequence = () => {
   for (let i = 0; i < 1; i++) {
-    const spliceDuplicates = () => {
-      generatedSequence.splice(i, 1);
-      generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
-    };
     //Push a random index from tilesArray to the generatedSequence array
     generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]);
-    //Remove and replace duplicate tiles
-    if (generatedSequence[i] === generatedSequence[i - 1]) {
-      spliceDuplicates();
-      if (generatedSequence[i] === generatedSequence[i - 1]) {
-        spliceDuplicates();
-        if (generatedSequence[i] === generatedSequence[i - 1]) {
-          spliceDuplicates();
-          if (generatedSequence[i] === generatedSequence[i - 1]) {
-            spliceDuplicates();
-            if (generatedSequence[i] === generatedSequence[i - 1]) {
-              spliceDuplicates();
-              if (generatedSequence[i] === generatedSequence[i - 1]) {
-                spliceDuplicates();
-                if (generatedSequence[i] === generatedSequence[i - 1]) {
-                  spliceDuplicates();
-                  if (generatedSequence[i] === generatedSequence[i - 1]) {
-                    spliceDuplicates();
-                    if (generatedSequence[i] === generatedSequence[i - 1]) {
-                      spliceDuplicates();
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
     userSequence = [];
   }
 };
@@ -140,6 +76,10 @@ $(() => {
       for (let j = 0; j < tilesArray.length; j++) {
         //If the index in generatedSequence is equal to an index in tilesArray
         //$chosenId is equal to a tile id equal to the id's used in index.html, eg #tile1, #tile2...
+        if (generatedSequence[i] === generatedSequence[i - 1]) {
+          generatedSequence.splice(i, 1);
+          generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
+        }
         if (generatedSequence[i] === tilesArray[j]) {
           const $chosenId = $(`#${tilesArray[j]}`);
           //Add lit class then remove lit class to the tile with that id after set time
@@ -280,6 +220,7 @@ $(() => {
     $play.attr('disabled','disabled');
     $check.removeAttr('disabled');
     userSequence = [];
+    console.log(generatedSequence);
   });
 
   //When check button is clicked
@@ -292,6 +233,7 @@ $(() => {
     if (userCorrect === false) {
       $check.removeAttr('disabled');
       $play.attr('disabled','disabled');
+      console.log(generatedSequence);
     }
   });
 
