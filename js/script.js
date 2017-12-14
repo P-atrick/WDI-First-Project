@@ -74,12 +74,13 @@ $(() => {
     for (let i = 0; i < generatedSequence.length; i++) {
       //Loop over tilesArray array
       for (let j = 0; j < tilesArray.length; j++) {
-        //If the index in generatedSequence is equal to an index in tilesArray
-        //$chosenId is equal to a tile id equal to the id's used in index.html, eg #tile1, #tile2...
+        //If a tile has been chosen twice in a row replace the second occurrence
         if (generatedSequence[i] === generatedSequence[i - 1]) {
           generatedSequence.splice(i, 1);
           generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
         }
+        //If the index in generatedSequence is equal to an index in tilesArray
+        //$chosenId is equal to a tile id equal to the id's used in index.html, eg #tile1, #tile2...
         if (generatedSequence[i] === tilesArray[j]) {
           const $chosenId = $(`#${tilesArray[j]}`);
           //Add lit class then remove lit class to the tile with that id after set time
@@ -220,7 +221,6 @@ $(() => {
     $play.attr('disabled','disabled');
     $check.removeAttr('disabled');
     userSequence = [];
-    console.log(generatedSequence);
   });
 
   //When check button is clicked
@@ -233,7 +233,6 @@ $(() => {
     if (userCorrect === false) {
       $check.removeAttr('disabled');
       $play.attr('disabled','disabled');
-      console.log(generatedSequence);
     }
   });
 
