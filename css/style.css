@@ -218,6 +218,10 @@ main {
 /*MEDIA QUERY*/
 @media screen and (max-width: 500px) {
 
+  h1 {
+    margin-top: 10px;
+  }
+
   main {
     width: 345px;
   }
