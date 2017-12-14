@@ -89,6 +89,7 @@ $(() => {
   };
   $instructionsText.hover(displayInstructions, removeInstructions);
 
+  //Animated button prompts
   //Animate the play button after 3s
   const wasPlayClicked = () => {
     clearTimeout(wasCheckClicked);
@@ -205,7 +206,7 @@ $(() => {
     $score.html(`Score ${score}`);
   };
 
-  //Remove 1 life and if none left adjust visible buttons
+  //Remove 1 life and if none left change visible buttons
   const removeLives = () => {
     lives = lives - 1;
     if (lives === 0) {
@@ -235,7 +236,7 @@ $(() => {
     }, 0);
   };
 
-  //Check if both the contents and length are equal and run functions to adjust variables as required
+  //Check if both the contents and length are equal and run functions as required
   const checkUserSequence = () => {
     //If equal - User was correct
     if (lengthEqual && contentsEqual === true) {
