@@ -26,11 +26,14 @@ The speed at which the sequence is displayed depends on the level. At higher lev
 * A restart button appears when the game is over
 * Instructions are shown when the player hovers over 'Instructions'
 * Animations and sounds are played to tell the player if they were right or wrong
+* An animation to show the player a new game has been started
 
 ## Built with
 * HTML5
 * CSS3
-* Javscript
+* Javascript
+* jQuery
+* PHP
 * Git
 * Heroku
 
