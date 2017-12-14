@@ -104,14 +104,25 @@ $(() => {
   //Animate the check button after 6.5s, if above level 4 animate after 9s
   const wasCheckClicked = () => {
     clearTimeout(wasPlayClicked);
-    setTimeout(() => {
-      if (checkClicked === false) {
-        $check.addClass('animated flash-red');
-        setTimeout(() => {
-          $check.removeClass('animated flash-red');
-        }, 1200);
-      }
-    }, 7000);
+    if (sequenceNumber > 5) {
+      setTimeout(() => {
+        if (checkClicked === false) {
+          $check.addClass('animated flash-red');
+          setTimeout(() => {
+            $check.removeClass('animated flash-red');
+          }, 1200);
+        }
+      }, 9000);
+    } else {
+      setTimeout(() => {
+        if (checkClicked === false) {
+          $check.addClass('animated flash-red');
+          setTimeout(() => {
+            $check.removeClass('animated flash-red');
+          }, 1200);
+        }
+      }, 6000);
+    }
   };
 
   //Reset everything to start a new game
