@@ -10,6 +10,8 @@ const tilesArray = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7
 let userCorrect = null;
 let userSequence = [];
 let muted = false;
+let playClicked = false;
+let checkClicked = false;
 
 //Generate a random sequence of length sequenceNumber and push it to the generatedSequence array
 const determineSequence = () => {
@@ -248,6 +250,8 @@ $(() => {
     playSequence();
     $play.attr('disabled','disabled');
     $check.removeAttr('disabled');
+    playClicked = true;
+    checkClicked = false;
     userSequence = [];
   });
 
@@ -258,6 +262,8 @@ $(() => {
     checkUserSequence();
     $check.attr('disabled','disabled');
     $play.removeAttr('disabled');
+    checkClicked = true;
+    playClicked = false;
     if (userCorrect === false) {
       $check.attr('disabled','disabled');
       $play.removeAttr('disabled');
