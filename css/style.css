@@ -226,6 +226,10 @@ main {
     width: 345px;
   }
 
+  .mute-unmute {
+    font-size: 13px;
+  }
+
   .instructions-overlay {
     height: 345px;
     width: 345px;
@@ -271,6 +275,10 @@ main {
 @media screen and (max-width: 350px) {
   main {
     width: 225px;
+  }
+
+  .mute-unmute {
+    font-size: 10px;
   }
 
   .instructions-overlay {
