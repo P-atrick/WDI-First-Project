@@ -185,7 +185,7 @@ $(() => {
 
   //Check if both the contents and length are equal and run functions to adjust variables as required
   const checkUserSequence = () => {
-    //If equal
+    //If equal - User was correct
     if (lengthEqual && contentsEqual === true) {
       userCorrect = true;
       newLevel();
@@ -193,7 +193,7 @@ $(() => {
       newScore();
       reduceTime();
       scoreAnimate();
-    //If not equal
+    //If not equal - User was wrong
     } else {
       userCorrect = false;
       userSequence = [];
@@ -231,8 +231,8 @@ $(() => {
     $check.attr('disabled','disabled');
     $play.removeAttr('disabled');
     if (userCorrect === false) {
-      $check.removeAttr('disabled');
-      $play.attr('disabled','disabled');
+      $check.attr('disabled','disabled');
+      $play.removeAttr('disabled');
     }
   });
 
