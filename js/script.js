@@ -9,6 +9,7 @@ let sequenceNumber = 2; //At level 1 sequence should contain 2 tiles
 const tilesArray = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9'];
 let userCorrect = null;
 let userSequence = [];
+let muted = false;
 
 //Generate a random sequence of length sequenceNumber and push it to the generatedSequence array
 const determineSequence = () => {
@@ -68,6 +69,7 @@ $(() => {
   const $level = $('.level');
   const $lives = $('.lives');
   const $main = $('main');
+  const $mute = $('.mute-unmute');
   const $restart = $('.restart-button');
   const $score = $('.score');
   const $play = $('.play-button');
@@ -227,6 +229,19 @@ $(() => {
   };
 
   //BUTTON CLICKS
+  //Mute or unmute audio when mute button is clicked
+  $mute.on('click', () => {
+    if (muted === false) {
+      muted = true;
+      $('#audio').prop('muted', 'muted');
+      $mute.html('UNMUTE');
+    } else if (muted === true) {
+      muted = false;
+      $('#audio').prop('muted', false);
+      $mute.html('MUTE');
+    }
+  });
+
   //When play button is clicked
   $play.on('click', () => {
     preventClick();
