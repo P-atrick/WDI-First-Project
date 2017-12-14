@@ -89,6 +89,23 @@ $(() => {
   };
   $instructionsText.hover(displayInstructions, removeInstructions);
 
+  const wasPlayClicked = () => {
+    setTimeout(() => {
+      $play.addClass('animated flash-red');
+      setTimeout(() => {
+        $play.removeClass('animated flash-red');
+      }, 1500);
+    }, 3000);
+  };
+  const wasCheckClicked = () => {
+    setTimeout(() => {
+      $check.addClass('animated flash-red');
+      setTimeout(() => {
+        $check.removeClass('animated flash-red');
+      }, 1500);
+    }, 6000);
+  };
+
   //Reset everything to start a new game
   const restart = () => {
     sequenceNumber = 2;
@@ -248,6 +265,7 @@ $(() => {
   $play.on('click', () => {
     preventClick();
     playSequence();
+    wasCheckClicked();
     $play.attr('disabled','disabled');
     $check.removeAttr('disabled');
     playClicked = true;
@@ -260,6 +278,7 @@ $(() => {
     compareArrayLength();
     compareArrayContents();
     checkUserSequence();
+    wasPlayClicked();
     $check.attr('disabled','disabled');
     $play.removeAttr('disabled');
     checkClicked = true;
