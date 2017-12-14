@@ -95,9 +95,9 @@ $(() => {
     clearTimeout(wasCheckClicked);
     setTimeout(() => {
       if (playClicked === false) {
-        $play.addClass('animated flash-red');
+        $play.addClass('animated flash');
         setTimeout(() => {
-          $play.removeClass('animated flash-red');
+          $play.removeClass('animated flash');
         }, 1200);
       }
     }, 3000);
@@ -108,18 +108,18 @@ $(() => {
     if (sequenceNumber > 5) {
       setTimeout(() => {
         if (checkClicked === false) {
-          $check.addClass('animated flash-red');
+          $check.addClass('animated flash');
           setTimeout(() => {
-            $check.removeClass('animated flash-red');
+            $check.removeClass('animated flash');
           }, 1200);
         }
       }, 9000);
     } else {
       setTimeout(() => {
         if (checkClicked === false) {
-          $check.addClass('animated flash-red');
+          $check.addClass('animated flash');
           setTimeout(() => {
-            $check.removeClass('animated flash-red');
+            $check.removeClass('animated flash');
           }, 1200);
         }
       }, 6000);
@@ -237,6 +237,7 @@ $(() => {
     }, 0);
   };
 
+  //Fade in animation on tiles when the game restarts
   const mainAnimate = () => {
     setTimeout(() => {
       $main.addClass('animated fadeIn');
@@ -295,7 +296,9 @@ $(() => {
   $play.on('click', () => {
     preventClick();
     playSequence();
-    wasCheckClicked();
+    if (sequenceNumber < 5) {
+      wasCheckClicked();
+    }
     $play.attr('disabled','disabled');
     $check.removeAttr('disabled');
     playClicked = true;
@@ -308,7 +311,9 @@ $(() => {
     compareArrayLength();
     compareArrayContents();
     checkUserSequence();
-    wasPlayClicked();
+    if (sequenceNumber < 5) {
+      wasPlayClicked();
+    }
     $check.attr('disabled','disabled');
     $play.removeAttr('disabled');
     checkClicked = true;

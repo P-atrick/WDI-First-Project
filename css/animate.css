@@ -66,14 +66,10 @@
 
 .flash {
   animation-name: flash;
-  background-color: #ED6A5A;
-  color: #F4F1BB;
 }
 
 .flash-red {
   animation-name: flash;
-  background-color: #ED6A5A;
-  color: #F4F1BB;
 }
 
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
