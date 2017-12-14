@@ -152,7 +152,7 @@ $(() => {
           generatedSequence.splice(i, 0, tilesArray[Math.floor(Math.random() * 9)]);
         }
         //If the index in generatedSequence is equal to an index in tilesArray
-        //$chosenId is equal to a tile id equal to the id's used in index.html, eg #tile1, #tile2...
+        //$chosenId is equal to a tile id in the same format as id's used in index.html, eg #tile1, #tile2...
         if (generatedSequence[i] === tilesArray[j]) {
           const $chosenId = $(`#${tilesArray[j]}`);
           //Add lit class then remove lit class to the tile with that id after set time
@@ -236,7 +236,7 @@ $(() => {
     }, 0);
   };
 
-  //Check if both the contents and length are equal and run functions as required
+  //Check if both the contents and length are equal and then run functions as required
   const checkUserSequence = () => {
     //If equal - User was correct
     if (lengthEqual && contentsEqual === true) {
@@ -257,7 +257,7 @@ $(() => {
     }
   };
 
-  //Add and remove an overlay that prevents the user from clicking
+  //Add then remove an overlay that prevents the user from clicking
   const preventClick = () => {
     setTimeout(() => {
       $main.addClass('overlay');

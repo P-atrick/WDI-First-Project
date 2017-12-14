@@ -6,7 +6,7 @@ body {
 }
 
 ::selection {
-  background-color:Transparent;
+  background-color: transparent;
 }
 
 .hide {
@@ -224,7 +224,7 @@ main {
 @media screen and (max-width: 500px) {
 
   h1 {
-    margin-top: 10px;
+    margin-top: 20px;
   }
 
   main {
