@@ -55,21 +55,6 @@ h1 {
   width: 100px;
 }
 
-.instructions-overlay-heading {
-  display: flex;
-  font-size: 30px;
-  font-weight: bold;
-  justify-content: center;
-  margin-top: 5px;
-  text-decoration: underline;
-}
-
-.instructions-contents {
-  line-height: 35px;
-  font-size: 20px;
-  font-weight: bold;
-}
-
 /*MAIN*/
 main {
   display: flex;
@@ -88,6 +73,21 @@ main {
   color: #5CA4A9;
   height: 495px;
   width: 495px;
+}
+
+.instructions-overlay-heading {
+  display: flex;
+  font-size: 30px;
+  font-weight: bold;
+  justify-content: center;
+  margin-top: 5px;
+  text-decoration: underline;
+}
+
+.instructions-contents {
+  line-height: 35px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .tiles-wrapper {
@@ -156,6 +156,7 @@ main {
   justify-content: space-around;
 }
 
+/*BUTTONS*/
 .play-check-button-wrapper {
   display: flex;
   justify-content: center;
@@ -207,10 +208,6 @@ main {
   padding-left: auto;
   padding-right: auto;
 }
-
-.level, .score, .lives {
-}
-
 
 /*MEDIA QUERY*/
 @media screen and (max-width: 500px) {

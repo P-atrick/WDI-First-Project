@@ -31,6 +31,7 @@ const nextLevelSequence = () => {
 
 $(() => {
   //$Variables
+  const $audio = $('#audio').get(0);
   const $check = $('.check-button');
   const $instructionsText = $('.instructions-text');
   const $instructionsOverlay = $('.instructions-overlay');
@@ -128,6 +129,11 @@ $(() => {
     }
   };
 
+  const playSound = () => {
+    $audio.src = 'sounds/glassbell.wav';
+    $audio.play();
+  }
+
   //Make the sequence be displayed more quickly at higher levels, speed increase becomes less severe as it gets faster
   const reduceTime = () => {
     if (displayTime <=200) {
@@ -188,6 +194,7 @@ $(() => {
     //If equal - User was correct
     if (lengthEqual && contentsEqual === true) {
       userCorrect = true;
+      playSound();
       newLevel();
       nextLevelSequence();
       newScore();
