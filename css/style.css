@@ -5,6 +5,10 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
+::selection {
+  background-color:Transparent;
+}
+
 .hide {
   display: none;
 }
