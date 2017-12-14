@@ -1,9 +1,5 @@
 /*DEFAULTS*/
 
-a {
-  text-decoration: none;
-}
-
 body {
   background-color: #5CA4A9;
   font-family: 'Raleway', sans-serif;
@@ -31,6 +27,7 @@ header {
   align-items: center;
   margin-bottom: 10px;
 }
+
 .header-wrapper {
   justify-content: center;
   width: 100%;
@@ -144,8 +141,6 @@ main {
   background-color: #E9FF0A;
   border: 3px solid rgba(105,105,105,0.9);
 }
-
-/*FOOTER*/
 
 /*STATS*/
 .stats-wrapper {

@@ -5,7 +5,7 @@ let generatedSequence = [];
 let lengthEqual = false;
 let lives = 3;
 let score = 0;
-let sequenceNumber = 2; //At level one sequence should contain 2 tiles
+let sequenceNumber = 2; //At level 1 sequence should contain 2 tiles
 const tilesArray = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9'];
 let userCorrect = null;
 let userSequence = [];
@@ -13,7 +13,6 @@ let userSequence = [];
 //Generate a random sequence of length sequenceNumber and push it to the generatedSequence array
 const determineSequence = () => {
   for (let i = 0; i < sequenceNumber; i++) {
-    //Splice out the index, splice in a new random index from tilesArray
     //Push a random index from tilesArray to the generatedSequence array
     generatedSequence.push(tilesArray[Math.floor(Math.random() * 9)]);
   }
