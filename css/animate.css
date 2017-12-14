@@ -68,10 +68,6 @@
   animation-name: flash;
 }
 
-.flash-red {
-  animation-name: flash;
-}
-
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
 
 @keyframes pulse {
