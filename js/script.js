@@ -129,10 +129,15 @@ $(() => {
     }
   };
 
-  const playSound = () => {
+  const winSound = () => {
     $audio.src = 'sounds/glassbell.wav';
     $audio.play();
-  }
+  };
+
+  const failSound = () => {
+    $audio.src = 'sounds/wrong.mp3';
+    $audio.play();
+  };
 
   //Make the sequence be displayed more quickly at higher levels, speed increase becomes less severe as it gets faster
   const reduceTime = () => {
@@ -194,7 +199,7 @@ $(() => {
     //If equal - User was correct
     if (lengthEqual && contentsEqual === true) {
       userCorrect = true;
-      playSound();
+      winSound();
       newLevel();
       nextLevelSequence();
       newScore();
@@ -204,6 +209,7 @@ $(() => {
     } else {
       userCorrect = false;
       userSequence = [];
+      failSound();
       removeLives();
       livesAnimate();
     }
