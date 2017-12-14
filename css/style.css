@@ -10,12 +10,12 @@ body {
 }
 
 .overlay {
-    background-color: rgba(0, 0, 0, 0);
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    pointer-events: none;
+  background-color: rgba(0, 0, 0, 0);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  pointer-events: none;
 }
 
 @-ms-viewport {
@@ -198,17 +198,14 @@ main {
   font-family: 'Raleway', sans-serif;
   font-size: 40px;
   font-weight: bolder;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  padding-left: auto;
-  padding-right: auto;
+  padding: 3px auto;
 }
 
 /*MEDIA QUERY*/
 @media screen and (max-width: 500px) {
 
   main {
-  width: 345px;
+    width: 345px;
   }
 
   .instructions-overlay {
@@ -226,21 +223,19 @@ main {
   }
 
   .tile {
-  height: 100px;
-  width: 100px;
+    height: 100px;
+    width: 100px;
   }
 
   .play-button {
     font-size: 25px;
-    padding-left: auto;
-    padding-right: auto;
+    padding: 0 auto;
     width: 120px;
   }
 
   .check-button {
     font-size: 25px;
-    padding-left: auto;
-    padding-right: auto;
+    padding: 0 auto;
     width: 120px;
   }
 
@@ -257,7 +252,7 @@ main {
 
 @media screen and (max-width: 350px) {
   main {
-  width: 225px;
+    width: 225px;
   }
 
   .instructions-overlay {
@@ -288,21 +283,19 @@ main {
   }
 
   .tile {
-  height: 60px;
-  width: 60px;
+    height: 60px;
+    width: 60px;
   }
 
   .play-button {
     font-size: 16px;
-    padding-left: auto;
-    padding-right: auto;
+    padding: 0 auto;
     width: 72px;
   }
 
   .check-button {
     font-size: 16px;
-    padding-left: auto;
-    padding-right: auto;
+    padding: 0 auto;
     width: 72px;
   }
 
