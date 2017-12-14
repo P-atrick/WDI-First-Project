@@ -29,6 +29,37 @@ const nextLevelSequence = () => {
   }
 };
 
+//Compare user sequence to generated sequence - Length
+const compareArrayLength = () => {
+  if ((generatedSequence.length === userSequence.length) === true) {
+    lengthEqual = true;
+  }
+};
+
+//Compare user sequence to generated sequence - Contents
+const compareArrayContents = () => {
+  for (let i = 0; i < generatedSequence.length; i++) {
+    if (!(generatedSequence[i] === userSequence[i])){
+      contentsEqual = false;
+    } else {
+      contentsEqual = true;
+    }
+  }
+};
+
+//Make the sequence be displayed more quickly at higher levels, speed increase becomes less severe as it gets faster
+const reduceTime = () => {
+  if (displayTime <=200) {
+    displayTime = displayTime - 20;
+  } else if (displayTime <=300) {
+    displayTime = displayTime - 40;
+  } else if (displayTime <= 500){
+    displayTime = displayTime - 80;
+  } else if (displayTime <= 1000) {
+    displayTime = displayTime - 100;
+  }
+};
+
 $(() => {
   //$Variables
   const $audio = $('#audio').get(0);
@@ -111,45 +142,16 @@ $(() => {
     userSequence.push(id);
   });
 
-  //Compare user sequence to generated sequence - Length
-  const compareArrayLength = () => {
-    if ((generatedSequence.length === userSequence.length) === true) {
-      lengthEqual = true;
-    }
-  };
-
-  //Compare user sequence to generated sequence - Contents
-  const compareArrayContents = () => {
-    for (let i = 0; i < generatedSequence.length; i++) {
-      if (!(generatedSequence[i] === userSequence[i])){
-        contentsEqual = false;
-      } else {
-        contentsEqual = true;
-      }
-    }
-  };
-
+  //Play win sound
   const winSound = () => {
     $audio.src = 'sounds/glassbell.wav';
     $audio.play();
   };
 
+  //Play fail sound
   const failSound = () => {
     $audio.src = 'sounds/wrong.mp3';
     $audio.play();
-  };
-
-  //Make the sequence be displayed more quickly at higher levels, speed increase becomes less severe as it gets faster
-  const reduceTime = () => {
-    if (displayTime <=200) {
-      displayTime = displayTime - 20;
-    } else if (displayTime <=300) {
-      displayTime = displayTime - 40;
-    } else if (displayTime <= 500){
-      displayTime = displayTime - 80;
-    } else if (displayTime <= 1000) {
-      displayTime = displayTime - 100;
-    }
   };
 
   //Add 1 to the sequence length and thus to the level. Display new level
@@ -226,7 +228,6 @@ $(() => {
   };
 
   //BUTTON CLICKS
-
   //When play button is clicked
   $play.on('click', () => {
     preventClick();
