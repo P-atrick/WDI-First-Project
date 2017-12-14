@@ -89,21 +89,32 @@ $(() => {
   };
   $instructionsText.hover(displayInstructions, removeInstructions);
 
+  //Animate the play button after 3s
   const wasPlayClicked = () => {
     setTimeout(() => {
       $play.addClass('animated flash-red');
       setTimeout(() => {
         $play.removeClass('animated flash-red');
-      }, 1500);
+      }, 1200);
     }, 3000);
   };
+  //Animate the check button after 6.5s, if above level 4 animate after 9s
   const wasCheckClicked = () => {
-    setTimeout(() => {
-      $check.addClass('animated flash-red');
+    if (sequenceNumber > 5) {
       setTimeout(() => {
-        $check.removeClass('animated flash-red');
-      }, 1500);
-    }, 6000);
+        $check.addClass('animated flash-red');
+        setTimeout(() => {
+          $check.removeClass('animated flash-red');
+        }, 1200);
+      }, 9000);
+    } else {
+      setTimeout(() => {
+        $check.addClass('animated flash-red');
+        setTimeout(() => {
+          $check.removeClass('animated flash-red');
+        }, 1200);
+      }, 6500);
+    }
   };
 
   //Reset everything to start a new game
@@ -268,6 +279,7 @@ $(() => {
     wasCheckClicked();
     $play.attr('disabled','disabled');
     $check.removeAttr('disabled');
+    clearTimeout(wasPlayClicked);
     playClicked = true;
     checkClicked = false;
     userSequence = [];
@@ -281,6 +293,7 @@ $(() => {
     wasPlayClicked();
     $check.attr('disabled','disabled');
     $play.removeAttr('disabled');
+    clearTimeout(wasCheckClicked);
     checkClicked = true;
     playClicked = false;
     if (userCorrect === false) {
