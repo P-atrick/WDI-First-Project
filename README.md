@@ -24,6 +24,8 @@ The speed at which the sequence is displayed depends on the level. At higher lev
 * In levels 1-3 the player will be reminded to press the play and check buttons if not pressed in time
 * Mute / Unmute button for victory and loss sounds
 * A restart button appears when the game is over
+* Instructions are shown when the player hovers over 'Instructions'
+* Animations and sounds are played to tell the player if they were right or wrong
 
 ## Built with
 * HTML5
