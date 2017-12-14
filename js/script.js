@@ -138,6 +138,7 @@ $(() => {
     userSequence = [];
     displayTime = 700;
     determineSequence();
+    mainAnimate();
   };
 
   //Display the generated sequence by lighting up the tiles
@@ -232,6 +233,15 @@ $(() => {
       $lives.addClass('animated tada-red');
       setTimeout(() => {
         $lives.removeClass('animated tada-red');
+      }, 1300);
+    }, 0);
+  };
+
+  const mainAnimate = () => {
+    setTimeout(() => {
+      $main.addClass('animated fadeIn');
+      setTimeout(() => {
+        $main.removeClass('animated fadeIn');
       }, 1300);
     }, 0);
   };
