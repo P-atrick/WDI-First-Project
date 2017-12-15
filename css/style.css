@@ -27,6 +27,7 @@ body {
 }
 
 .mute-unmute-wrapper {
+  cursor: default;
   display: flex;
   justify-content: flex-end;
 }
