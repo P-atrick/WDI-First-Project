@@ -2,6 +2,7 @@
 
 body {
   background-color: #5CA4A9;
+  cursor: default;
   font-family: 'Raleway', sans-serif;
 }
 
@@ -27,7 +28,6 @@ body {
 }
 
 .mute-unmute-wrapper {
-  cursor: default;
   display: flex;
   justify-content: flex-end;
 }
