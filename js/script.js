@@ -105,25 +105,14 @@ $(() => {
   //Animate the check button after 6.5s, if above level 4 animate after 9s
   const wasCheckClicked = () => {
     clearTimeout(wasPlayClicked);
-    if (sequenceNumber > 5) {
-      setTimeout(() => {
-        if (checkClicked === false) {
-          $check.addClass('animated flash');
-          setTimeout(() => {
-            $check.removeClass('animated flash');
-          }, 1200);
-        }
-      }, 9000);
-    } else {
-      setTimeout(() => {
-        if (checkClicked === false) {
-          $check.addClass('animated flash');
-          setTimeout(() => {
-            $check.removeClass('animated flash');
-          }, 1200);
-        }
-      }, 6000);
-    }
+    setTimeout(() => {
+      if (checkClicked === false) {
+        $check.addClass('animated flash');
+        setTimeout(() => {
+          $check.removeClass('animated flash');
+        }, 1200);
+      }
+    }, 6000);
   };
 
   //Reset everything to start a new game
@@ -296,7 +285,7 @@ $(() => {
   $play.on('click', () => {
     preventClick();
     playSequence();
-    if (sequenceNumber < 5) {
+    if (sequenceNumber < 6) {
       wasCheckClicked();
     }
     $play.attr('disabled','disabled');
@@ -311,7 +300,7 @@ $(() => {
     compareArrayLength();
     compareArrayContents();
     checkUserSequence();
-    if (sequenceNumber < 5) {
+    if (sequenceNumber < 6) {
       wasPlayClicked();
     }
     $check.attr('disabled','disabled');
