@@ -31,7 +31,7 @@ The speed at which the sequence is displayed depends on the level. At higher lev
 ## Built with
 * HTML5
 * CSS3
-* Javascript
+* JavaScript
 * jQuery
 * PHP
 * Git
